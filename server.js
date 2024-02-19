@@ -6,9 +6,11 @@ require('dotenv').config();
 
 const app = express();
 const port = process.env.PORT || 3000;
-
 const client = new Client({
-    connectionString: process.env.DATABASE_URL
+    connectionString: process.env.DATABASE_URL,
+    ssl: {
+        rejectUnauthorized: false
+    }
 });
 
 
@@ -29,7 +31,7 @@ app.post('/api/addTile', async (req, res) => {
 
         //  insert data into the noise_reports table
         await client.query(`
-            INSERT INTO noise_reports (avgdB, avgLoud, geometry)
+            INSERT INTO noise_reports (avg_db, avg_loudness, geometry)
             VALUES ($1, $2, ST_SetSRID(ST_GeomFromGeoJSON($3), 4326))
         `, [geojson.properties.avgdB, geojson.properties.avgLoud, JSON.stringify(geojson.geometry)]);
 
@@ -45,7 +47,7 @@ app.post('/api/addTile', async (req, res) => {
 
 
         await client.query(`
-    INSERT INTO noise_report_data (report_id, dbavg, dbmax, dbdevice, time, date, loudness, feeling, tags)
+    INSERT INTO noise_report_data (report_id, avg_db, max_db, device, time, date, loudness, feeling, tags)
     VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
 `, [
             reportId,   // $1
@@ -120,22 +122,23 @@ app.get('/api/getTiles', async (req, res) => {
             // Filter data for the current report_id
             const reportData = data.filter((d) => d.report_id === dbResponse.id);
 
-            // Convert database response and reportData to GeoJSON feature
+
+            // Convert database response and reportData to GeoJSON feature for map display
             const geojsonFeature = {
                 type: 'Feature',
                 properties: {
-                    avgdB: parseInt(dbResponse.avgdb),
-                    avgLoud: parseInt(dbResponse.avgloud),
+                    avgdB: parseInt(dbResponse.avg_db),
+                    avgLoud: parseInt(dbResponse.avg_loudness),
                     data: reportData.map((d) => ({
                         decibel: {
-                            avg: parseInt(d.decibel_avg),
-                            max: parseInt(d.decibel_max),
-                            device: d.decibel_device,
+                            avg: parseInt(d.avg_db),
+                            max: parseInt(d.max_db),
+                            device: d.device,
                         },
                         time: d.time,
                         loudness: parseInt(d.loudness),
                         feeling: parseInt(d.feeling),
-                        tags: parseTags(d.tags), // Parse the tags need to update
+                        tags: parseTags(d.tags),
                     })),
                 },
                 geometry: {
@@ -143,7 +146,6 @@ app.get('/api/getTiles', async (req, res) => {
                     coordinates,
                 },
             };
-
             return geojsonFeature;
         });
 
@@ -171,7 +173,7 @@ app.post('/api/updateTile', async (req, res) => {
     try {
         // Find the tile in the noise_reports table based on coordinates
         const matchingTileQuery = await client.query(
-            'SELECT id, avgdB, avgLoud FROM noise_reports WHERE ST_DWithin(ST_MakeValid(geometry), ST_SetSRID(ST_MakePoint($1, $2), 4326), 0.000001)',
+            'SELECT id, avg_db, avg_loudness FROM noise_reports WHERE ST_DWithin(ST_MakeValid(geometry), ST_SetSRID(ST_MakePoint($1, $2), 4326), 0.000001)',
             [tileCoord[1], tileCoord[0]]
         );
 
@@ -181,7 +183,7 @@ app.post('/api/updateTile', async (req, res) => {
 
             // Update the noise_report_data table with new data
             await client.query(`
-                INSERT INTO noise_report_data (report_id, dbavg, dbmax, dbdevice, time, date, loudness, feeling, tags)
+                INSERT INTO noise_report_data (report_id, avg_db, max_db, device, time, date, loudness, feeling, tags)
                 VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
             `, [
                 matchingTile.id,         // $1
@@ -197,7 +199,7 @@ app.post('/api/updateTile', async (req, res) => {
 
             // Recalculate averages in the noise_reports table
             const newAveragesQuery = await client.query(`
-                SELECT AVG(dbavg) AS newAvgdB, AVG(loudness) AS newAvgLoud
+                SELECT AVG(avg_db) AS newAvgdB, AVG(loudness) AS newAvgLoud
                 FROM noise_report_data
                 WHERE report_id = $1
             `, [matchingTile.id]);
@@ -208,7 +210,7 @@ app.post('/api/updateTile', async (req, res) => {
             // Update averages in the noise_reports table
             await client.query(`
                 UPDATE noise_reports
-                SET avgdB = $1, avgLoud = $2
+                SET avg_db = $1, avg_loudness = $2
                 WHERE id = $3
             `, [newAvgdB, newAvgLoud, matchingTile.id]);
 

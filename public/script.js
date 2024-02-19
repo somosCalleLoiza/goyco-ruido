@@ -20,6 +20,8 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 //bounds of map
 let bounds = [[18.454596, -66.066049], [18.447085, -66.050838]]
 map.fitBounds(bounds);
+
+//Sets the boundaries to be the boxed region of Goyco
 //map.setMaxBounds(bounds);
 
 // polygon for monitoring area
@@ -75,7 +77,7 @@ function getColorDB(dB) {
 
 //button for recentering map
 L.Control.Recenter = L.Control.extend({
-    onAdd: function(map) {
+    onAdd: function (map) {
         let btn = L.DomUtil.create('button');
         btn.innerHTML = "Back to Goyco";
         btn.style.padding = "5px";
@@ -89,12 +91,12 @@ L.Control.Recenter = L.Control.extend({
         return btn;
     },
 
-    onRemove: function(map) {
+    onRemove: function (map) {
         L.DomEvent.off();
     }
 });
 
-L.control.recenter = function(opts) {
+L.control.recenter = function (opts) {
     return new L.Control.Recenter(opts);
 }
 
@@ -181,8 +183,8 @@ Input for adding data to the map
 //local vars for responses
 let reportTile;
 
-let testTile = L.polygon([[0,0]], {color: '#424242'}).addTo(map);
-let testMarker = L.marker([0,0]).addTo(map);
+let testTile = L.polygon([[0, 0]], { color: '#424242' }).addTo(map);
+let testMarker = L.marker([0, 0]).addTo(map);
 
 let reportData =
 {
@@ -228,8 +230,8 @@ leaveForm.onclick = function () {
 
     mapForm.reset();
 
-    testMarker.setLatLng([0, 0]); 
-    testTile.setLatLngs([[0,0]]);
+    testMarker.setLatLng([0, 0]);
+    testTile.setLatLngs([[0, 0]]);
     locationMode = false;
 }
 document.getElementById("stayForm").onclick = function () {
@@ -266,7 +268,7 @@ tileZoom.onclick = (event) => {
     if (!(testTile.getCenter().equals(L.latLng(0, 0)))) {
         map.setView(testTile.getCenter(), 19);
     }
-    
+
 }
 
 //calls the relevant functions after coords are selected through any method
@@ -292,12 +294,12 @@ function handleLoc(lat, long) {
 
         let testlatlngs = [
             [tile[0], tile[1]],
-            [tile[0], tile[1]+gridSize],
-            [tile[0]-gridSize, tile[1]+gridSize],
-            [tile[0]-gridSize, tile[1]]
+            [tile[0], tile[1] + gridSize],
+            [tile[0] - gridSize, tile[1] + gridSize],
+            [tile[0] - gridSize, tile[1]]
         ];
 
-        testMarker.setLatLng([lat, long]); 
+        testMarker.setLatLng([lat, long]);
         testTile.setLatLngs(testlatlngs);
 
         map.panTo(testTile.getCenter());
@@ -423,7 +425,7 @@ function hideTags(event) {
     document.getElementById("tagSearch").value = "";
     document.getElementById("tagDropdown").style.display = "none";
 }
-  
+
 function filterTags() {
     let input = document.getElementById("tagSearch");
     let filter = input.value.toUpperCase();
@@ -431,13 +433,13 @@ function filterTags() {
     let tags = dropdown.getElementsByTagName("button");
     let totalShown = 0;
     for (i = 0; i < tags.length; i++) {
-      tagName = tags[i].innerText;
-      if ((tagName.toUpperCase().indexOf(filter) > -1) && (totalShown < 5)){
-        tags[i].style.display = "";
-        totalShown += 1;
-      } else {
-        tags[i].style.display = "none";
-      }
+        tagName = tags[i].innerText;
+        if ((tagName.toUpperCase().indexOf(filter) > -1) && (totalShown < 5)) {
+            tags[i].style.display = "";
+            totalShown += 1;
+        } else {
+            tags[i].style.display = "none";
+        }
     }
     dropdown.style.display = "block";
 }
@@ -482,8 +484,8 @@ async function mapSubmit(event) {
 
     mapForm.reset();
 
-    testMarker.setLatLng([0, 0]); 
-    testTile.setLatLngs([[0,0]]);
+    testMarker.setLatLng([0, 0]);
+    testTile.setLatLngs([[0, 0]]);
 
     locationMode = false;
 
@@ -658,7 +660,7 @@ async function showData(properties, coords) {
     bottomLeft.style.textAlign = "right";
 
     //set color for tile visual
-    document.getElementById("labelGrid4").style.backgroundColor = getColorDB(tileData.avgdb) + "4d";
+    document.getElementById("labelGrid4").style.backgroundColor = getColorDB(tileData.avg_db) + "4d";
 
     //hide info + report page, show data page
     info.style.display = "none";
@@ -680,16 +682,18 @@ async function showData(properties, coords) {
     reportNum.innerHTML = "Number of reports: " + reportData.length;
     statBlock.appendChild(reportNum);
     const tileDB = document.createElement("p");
-    if (tileData.avgdb != null) {
-        tileDB.innerHTML = "Average decibel level: " + tileData.avgdb;
+
+
+    if (tileData.avg_db != null) {
+        tileDB.innerHTML = "Average decibel level: " + tileData.avg_db;
     } else {
         tileDB.innerHTML = "Average decibel level: N/A";
     }
     statBlock.appendChild(tileDB);
     const tileLoud = document.createElement("p");
-    tileLoud.innerHTML = "Average subjective loudness (0-10): " + tileData.avgloud;
+    tileLoud.innerHTML = "Average subjective loudness (0-10): " + tileData.avg_loudness;
     statBlock.appendChild(tileLoud);
-    statBlock.style.backgroundColor = getColorDB(tileData.avgdb) + "4d";
+    statBlock.style.backgroundColor = getColorDB(tileData.avg_db) + "4d";
     dataBlocks.appendChild(statBlock);
 
     //go through every report and create a block for it
@@ -716,21 +720,22 @@ async function showData(properties, coords) {
         decibelHeader.innerHTML = "Decibel Data";
         blockContent.appendChild(decibelHeader);
 
-        if (currentReport.dbavg != null) {
+
+        if (currentReport.avg_db != null) {
             const avgdB = document.createElement("p");
-            avgdB.innerHTML = "Average decibel level: " + currentReport.dbavg;
+            avgdB.innerHTML = "Average decibel level: " + currentReport.avg_db;
             blockContent.appendChild(avgdB);
 
             const maxdB = document.createElement("p");
-            maxdB.innerHTML = "Max decibel level " + currentReport.dbmax;
+            maxdB.innerHTML = "Max decibel level " + currentReport.max_db;
             blockContent.appendChild(maxdB);
 
             const device = document.createElement("p");
-            device.innerHTML = "Device used for measurement: " + currentReport.dbdevice;
+            device.innerHTML = "Device used for measurement: " + currentReport.device;
             blockContent.appendChild(device);
 
             //set block color to tile color
-            dataBlock.style.backgroundColor = getColorDB(currentReport.dbavg) + "4d";
+            dataBlock.style.backgroundColor = getColorDB(currentReport.avg_db) + "4d";
         }
         else {
             const noDB = document.createElement("p");
