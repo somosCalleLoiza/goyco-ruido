@@ -2,20 +2,20 @@ const express = require('express');
 const wkx = require('wkx');
 const { Client } = require('pg');
 const path = require('path');
+require('dotenv').config();
 
 const app = express();
 const port = 3000;
 
-//set up the database connection
 const client = new Client({
-    user: 'admin',
-    host: 'localhost',
-    database: 'postgres',
-    password: 'admin',
-    port: 5432,
+    connectionString: process.env.DATABASE_URL
 });
+
+
 console.log("Connecting to database...");
-//client.connect();
+client.connect()
+    .then(() => console.log('Connected to PostgreSQL'))
+    .catch(err => console.error('Connection error', err));
 
 app.use(express.json());
 app.use(express.static('public'));
