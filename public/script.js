@@ -364,7 +364,7 @@ function displayLocCoords(lat, long) {
 
 //tag stuff
 
-let tagList = ["Car", "Motorcycle", "Traffic", "Construction", "Wildlife", "Music", "Restaurant", "Bar", "Rain", "Aircraft", "Indoor", "Outdoor", "Windy"];
+let tagList = ["Car", "Motorcycle", "Traffic", "Construction", "Wildlife", "Music", "Restaurant", "Bar", "Rain", "Aircraft", "Indoor", "Outdoor", "Wind"];
 let userTags = [];
 createTags();
 
@@ -675,7 +675,7 @@ async function showData(properties, coords) {
     statBlock.className = "data";
 
     const statHeader = document.createElement("h3");
-    statHeader.innerHTML = "Tile Stats";
+    statHeader.innerHTML = "Tile Data";
     statBlock.appendChild(statHeader);
 
     const reportNum = document.createElement("p");
@@ -691,7 +691,7 @@ async function showData(properties, coords) {
     }
     statBlock.appendChild(tileDB);
     const tileLoud = document.createElement("p");
-    tileLoud.innerHTML = "Average subjective loudness (0-10): " + tileData.avg_loudness;
+    tileLoud.innerHTML = "Average subjective loudness (1-5): " + tileData.avg_loudness;
     statBlock.appendChild(tileLoud);
     statBlock.style.backgroundColor = getColorDB(tileData.avg_db) + "4d";
     dataBlocks.appendChild(statBlock);
@@ -762,7 +762,7 @@ async function showData(properties, coords) {
         subHeader.innerHTML = "Subjective Data";
         blockContent.appendChild(subHeader);
         const loud = document.createElement("p");
-        loud.innerHTML = "Loudness on scale from 0 to 10: " + currentReport.loudness;
+        loud.innerHTML = "Loudness on scale from 0 to 5: " + currentReport.loudness;
         blockContent.appendChild(loud);
         const feeling = document.createElement("p");
         feeling.innerHTML = "Associated feeling: " + emojis[currentReport.feeling];
