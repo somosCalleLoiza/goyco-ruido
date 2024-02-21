@@ -27,6 +27,7 @@ html {
 *:after {
   box-sizing: inherit;
   font-family: inherit;
+  scroll-margin-top: 70px;
 }
 
 body {
@@ -156,6 +157,22 @@ footer {
   color: var(--mainDark);
 }
 
+.shadow {
+  box-shadow: 10px 10px var(--accentDark);
+}
+
+
+.default h1 {
+  font-size: 42px;
+  line-height: 80px;
+}
+.default p, .default a, .default label, .default input, .default select, .default button  {
+  font-size: 20px;
+}
+.default h2 {
+  font-size: 25px;
+}
+
 /* HOME PAGE */
 .title {
   height: 650px;
@@ -256,35 +273,11 @@ footer {
   object-fit: cover;
   width: 100%;
   height: 100%;
-  box-shadow: 10px 10px var(--accentDark);
 }
 
 .home-icon {
   font-size: 80px !important;
   line-height: 0.2 !important;
-}
-
-.page {
-  background-color: var(--mainLight);
-  box-shadow: 10px 10px var(--accentDark);
-  margin: 30px;
-  padding: 30px;
-  height: max-content;
-}
-.page h1 {
-  font-size: 30px;
-}
-
-.page h2 {
-  font-size: 25px;
-}
-
-.page p, .page a {
-  font-size: 20px;
-}
-
-.page img {
-  max-width: 100%;
 }
 
 #imgCenter {
@@ -295,21 +288,32 @@ footer {
   width: 50%;
 }
 
-/* MAP */
+/* ABOUT PAGE */
+
+#about {
+  padding: 30px 80px 80px 80px;
+}
+.ref a {
+  text-decoration: none;
+}
+
+/* MAP PAGE */
 
 #map {
-  height: 500px;
   background-color: #00000022;
   z-index: 0;
+  min-height: 500px;
 }
 .mapGrid {
+  padding: 40px;
   display: grid;
   grid-template-columns: 65% auto;
-  grid-template-rows: 500px;
+  grid-template-rows:  calc(100vh - 160px - 80px);
 }
 .mapControl {
   padding: 7px;
   font-weight: 450;
+  font-size: 15px !important;
   color: #000000;
   background-color: #ffffff;
   border-radius: 4px;
@@ -419,6 +423,7 @@ form button {
 
 .back {
   float: right;
+  padding: 0px 10px;
 }
 
 .dataBlocks {
@@ -517,7 +522,6 @@ input[type="radio"]:hover + label {
 
 #tagSearch {
   box-sizing: border-box;
-  font-size: 16px;
   padding: 8px;
   border: none;
   min-width: 200px;
@@ -629,21 +633,29 @@ input[type="radio"]:hover + label {
 
 /* HANDBOOK */
 .handbook {
-  padding: 20px;
-  align-items: flex-start;
+  padding: 40px;
   flex-wrap: nowrap;
 }
 
 #handbookTxt {
   flex-grow: 1;
-  max-height: calc(100vh - 160px - 100px);
-  overflow: scroll;
+  padding: 0px 40px;
 }
 
 #handbookNav {
   display: flex;
   flex-direction: column;
   min-width: fit-content;
+  padding: 0px 20px 20px 20px;
+  height: fit-content;
+}
+
+.padded {
+  padding: 80px;
+}
+.heading {
+  padding-bottom: 30px;
+  padding-top: 30px;
 }
 
 /*Small screen*/
@@ -660,13 +672,15 @@ input[type="radio"]:hover + label {
     margin: 0px;
   }
 
+  #about {
+    padding: 30px 40px 40px 40px;
+  }
+
   .handbook {
-    align-items: flex-start;
     flex-wrap: wrap;
-    padding: 0px;
+    padding: 40px 0px;
   }
   #handbookNav {
-    display: flex;
     align-items: center;
     flex-direction: row;
     width: 100%;
@@ -697,11 +711,6 @@ input[type="radio"]:hover + label {
     margin-top: 80px; 
   }
 
-  #handbookTxt {
-    flex-grow: 1;
-    max-height: fit-content;
-    overflow: scroll;
-  }
   #reportForm, #dataBlocks {
     height: fit-content;
     max-height: fit-content;
@@ -711,10 +720,6 @@ input[type="radio"]:hover + label {
 
 /*mobile*/
 @media only screen and (max-width: 500px) {
-  .page {
-    margin: 0px;
-    box-shadow: 0px 10px var(--accentShadow);
-  }
   .mapTxt {
     padding: 0px;
   }
