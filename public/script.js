@@ -591,10 +591,6 @@ async function createTile(coords, data) {
 Displaying and filtering data
 ========================================================================== */
 
-//local so that the data displaying div doesn't need to be remade 
-//every time you click a tile you've seen before
-let loaded = {};
-
 //dynamically create visual for tile
 const grid = document.getElementById("tileLabeled");
 for (let i = 0; i < 9; i++) {
@@ -648,7 +644,6 @@ async function showData(properties, coords) {
     }
 
     tName.innerHTML = "Tile " + coords[0][1] + ", " + coords[0][0];
-    //put tooltip here to explain coord title - coordinates of top left corner of tile, .00018 size
 
     //set coordinates for tile visual
     topLeft.innerHTML = coords[0][1] + ", " + coords[0][0];

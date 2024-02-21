@@ -12,17 +12,18 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
   </head>
 
   <body>
+    
     <div class="wrapper">
       <header>
         <div class="navbar">
           <ul class="navlinks">
             <li class="homebtn current">
-              <a href="index.html"
-                ><i class="fa fa-home" aria-hidden="true"></i
-              ></a>
+              <a href="index.html"><i class="fa fa-home" aria-hidden="true"></i></span></a>
             </li>
             <li><a href="about.html">About</a></li>
             <li><a href="map.html">Map</a></li>
@@ -37,36 +38,51 @@
         </div>
       </header>
 
-      <div class="main">
-        <div class="titleBox">
-          <h1>Noise Pollution in La Goyco</h1>
-          <p>Learn about noise pollution and how you can help.</p>
+      <div class = "fixedBG">
+        <div class="title">
+          <div class="titleBox">
+            <h1>Noise Pollution in La Goyco</h1>
+            <p>Learn about noise pollution and how you can help.</p>
+          </div>
         </div>
+        <div class = "downPoint"></div>
       </div>
 
-      <div class="pages">
-        <div class="page">
+      <div class="home-container">
+        <div class="bar">
+          <div class = "home-info center">
+          <span class="material-icons home-icon">volume_up</span>
           <h2>Noise Pollution</h2>
           <p>
-            Learn more about the issue of noise pollution, health implications,
+            Learn more about noise pollution, its health implications,
             and noise policies in Puerto Rico.
           </p>
-          <a href="about.html">Learn more about the project. ></a>
+          <a href="about.html">Learn more about noise ></a>
+          </div>
+
+          <img src="map.png" class = "home-image"></img>
         </div>
 
-        <div class="page">
-          <h2>Noise Map</h2>
-          <p>
-            View the collected noise pollution data and contribute to the map.
-          </p>
-          <a href="map.html">Contribute and see data ></a>
+        <div class="bar right-text">
+          <div class="home-info center right-text">
+            <span class="material-icons home-icon">map</span>
+            <h2>Community Map</h2>
+            <p>Want to explore and document noise in your community? The community map features data collected by La Goyco residents, including noise level and sources of noise. Anyone can add to the map!</p>
+            <a href="map.html">Contribute and view data ></a>
+          </div>
+          <img src="map.png" class = "home-image left-image"></img>
         </div>
 
-        <div class="page">
-          <h2>Policy Handbook</h2>
-          <p>Learn about actions you can take to combat noise pollution.</p>
-          <a href="map.html">Policy resources and overview ></a>
+        <div class="bar last">
+          <div class="home-info center">
+            <span class="material-icons home-icon">volume_off</span>
+            <h2>Noise Reduction Handbook</h2>
+            <p>Check the handbook to find resources on the many ways harmful noise can be reduced. Find strategies that work on a local level and in your own home!</p>
+            <a href="map.html">Read the handbook ></a>
+          </div>
+          <img src="map.png" class = "home-image"></img>
         </div>
+        <div class = "upPoint"></div>
       </div>
 
       <div class="wrapperSpace"></div>
