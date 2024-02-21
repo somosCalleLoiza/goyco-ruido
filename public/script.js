@@ -80,8 +80,7 @@ L.Control.Recenter = L.Control.extend({
     onAdd: function (map) {
         let btn = L.DomUtil.create('button');
         btn.innerHTML = "Back to Goyco";
-        btn.style.padding = "5px";
-        btn.style.fontFamily = "inherit";
+        btn.className = "mapControl";
 
         L.DomEvent.on(btn, "click", function (e) {
             L.DomEvent.stopPropagation(e);

@@ -8,8 +8,9 @@
   --lightShadow: #bbbbbb;
   --altLight: #ffffff;
   --lightTransparent: #eeeeeece;
-  --mainAccent: #b1e9e7;
-  --accentShadow: #689895;
+  --mainAccent: #c7ebeb;
+  --accentDark: #689895;
+  --accentDarker: #517b79;
   --accentLight: #d7f7f7;
 }
 
@@ -33,7 +34,7 @@ body {
 }
 
 a {
-  color: var(--accentShadow);
+  color: var(--accentDarker);
   font-size: 18px;
   transition: border-bottom 0.3s ease;
 }
@@ -191,6 +192,7 @@ footer {
 .fixedBG {
   background-image: url(map.png);
   background-attachment: fixed;
+  background-clip: border-box;
 }
 .bar {
   background-color: var(--mainLight);
@@ -204,7 +206,13 @@ footer {
   justify-content: center;
   align-items: center;
   gap: 40px;
-  padding: 70px 90px;
+  padding: 90px 90px;
+}
+.accentColor {
+  background-color: var(--mainAccent);
+}
+.lightColor {
+  background-color: var(--mainLight);
 }
 .last {
   margin-bottom: 50px;
@@ -218,21 +226,15 @@ footer {
 
 .downPoint {
   width: 100%;
-  height: 100px;
-  background-color: var(--mainLight);
+  height: 50px;
   clip-path: polygon(0 0,50% 50px,100% 0,100% 100%,0 100%);
 }
 .upPoint {
   width: 100%;
   height: 50px;
-  background-color: var(--mainAccent);
   clip-path: polygon(0 50px,50% 0,100% 50px,100% 100%,0 100%);
 }
-.home-container {
-  background-color: var(--mainLight);
-}
 .home-info {
-  background-color: var(--mainLight);
   margin: 30px;
   padding: 30px;
   height: max-content;
@@ -240,6 +242,9 @@ footer {
 }
 .home-info:hover {
   transform: scale(1.04);
+}
+.home-info:hover .home-icon {
+  color: var(--accentDark);
 }
 .home-info h2 {
   font-size: 42px;
@@ -251,7 +256,7 @@ footer {
   object-fit: cover;
   width: 100%;
   height: 100%;
-  box-shadow: 10px 10px var(--accentShadow);
+  box-shadow: 10px 10px var(--accentDark);
 }
 
 .home-icon {
@@ -261,7 +266,7 @@ footer {
 
 .page {
   background-color: var(--mainLight);
-  box-shadow: 10px 10px var(--accentShadow);
+  box-shadow: 10px 10px var(--accentDark);
   margin: 30px;
   padding: 30px;
   height: max-content;
@@ -300,7 +305,21 @@ footer {
 .mapGrid {
   display: grid;
   grid-template-columns: 65% auto;
-  grid-template-rows: auto;
+  grid-template-rows: 500px;
+}
+.mapControl {
+  padding: 7px;
+  font-weight: 450;
+  color: #000000;
+  background-color: #ffffff;
+  border-radius: 4px;
+  border: 2px solid #00000020;
+  background-clip:padding-box;
+}
+.mapControl:hover {
+  color: #000000;
+  background-color: #F4F4F4;
+  cursor: pointer;
 }
 
 .mapTxt {
@@ -318,7 +337,7 @@ footer {
   height: 337px;
 }
 #reportForm {
-  height: 423px;
+  max-height: 420px;
 }
 
 button {
@@ -630,15 +649,11 @@ input[type="radio"]:hover + label {
 /*Small screen*/
 @media only screen and (max-width: 1100px) {
   .mapGrid {
-    grid-template-columns: auto;
+    grid-template-columns: 100%;
     grid-template-rows: auto auto;
   }
   .mapTxt {
     padding: 20px;
-  }
-  .pages {
-    grid-template-columns: auto;
-    grid-template-rows: auto auto auto;
   }
   .title h1 {
     font-size: 60px;
@@ -664,9 +679,6 @@ input[type="radio"]:hover + label {
   .popup {
     max-width: 80%;
   }
-
-}
-@media only screen and (max-width: 900px) {
   .bar {
     display: flex;
     flex-wrap: wrap;
@@ -678,7 +690,23 @@ input[type="radio"]:hover + label {
   .left-image {
     order: 2;
   }
-  
+  .home-image {
+    margin-bottom: 80px; 
+  }
+  .home-icon {
+    margin-top: 80px; 
+  }
+
+  #handbookTxt {
+    flex-grow: 1;
+    max-height: fit-content;
+    overflow: scroll;
+  }
+  #reportForm, #dataBlocks {
+    height: fit-content;
+    max-height: fit-content;
+  }
+
 }
 
 /*mobile*/
@@ -686,6 +714,9 @@ input[type="radio"]:hover + label {
   .page {
     margin: 0px;
     box-shadow: 0px 10px var(--accentShadow);
+  }
+  .mapTxt {
+    padding: 0px;
   }
 
   .navbar,
@@ -708,4 +739,5 @@ input[type="radio"]:hover + label {
   .home-info {
     padding: 7px;
   }
+
 }
