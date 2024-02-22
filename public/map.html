@@ -11,6 +11,7 @@
      crossorigin=""/>
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
   </head>
 
   <body>
@@ -70,7 +71,9 @@
           <div class = "txtMain" id = "reportForm">
             <form id = mapForm>
               <h3>Decibel Level</h3>
-              <p>Sentence description here - decibel data encouraged, <a href = "monitors.html">link to device page</a></p>
+              <p>Sentence description here - decibel data encouraged, <a href = "monitors.html" target="_blank">link to device page<span class="material-symbols-outlined smalltext">
+                open_in_new
+                </span></a></p>
               <label for="avg">Average dB: </label>
               <input id = "avg" type = "number" min = 25 max = 140 placeholder=60></input><br><br>
               <label for="max">Max dB: </label>
@@ -78,14 +81,13 @@
               <label for="device">Device used for measurement: </label>
               <select id="device" name="device">
                 <option value="" selected>Select device</option>
-                <option value="Sound Level Meter (not mobile app)">Sound Level Meter (not mobile app)</option>
+                <option value="iPhone App">iPhone App</option>
+                <option value="Android App">Android App</option>
                 <option value="Type 1 Sound Level Meter">Type 1 Sound Level Meter</option>
                 <option value="Type 2 Sound Level Meter">Type 2 Sound Level Meter</option>
                 <option value="Type 1 Sound Level Meter (certified)">Type 1 Sound Level Meter (certified)</option>
                 <option value="Type 2 Sound Level Meter (certified)">Type 2 Sound Level Meter (certified)</option>
-                <option value="iPhone App">iPhone App</option>
-                <option value="Android App">Android App</option>
-                <option value="Other">Other</option>
+                <option value="Other Sound Level Meter">Other Sound Level Meter</option>
               </select>
               <br>
               <br>

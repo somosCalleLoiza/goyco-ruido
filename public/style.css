@@ -345,6 +345,9 @@ footer {
 .floatright {
   float: right;
 }
+.smalltext {
+  font-size: 20px !important;
+}
 
 #dataBlocks {
   height: 337px;
