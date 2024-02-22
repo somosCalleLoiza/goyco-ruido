@@ -18,11 +18,28 @@
     <div class = "wrapper">
     <header>
         <div class="navbar">
-          <ul class = "navlinks">
-            <li class = "homebtn"><a href="index.html" aria-label="Home"><i class="fa fa-home" aria-hidden="true"></i></a></li>
-            <li><a href="about.html">About</a></li>
-            <li class = "current"><a href="map.html">Map</a></li>
-            <li><a href="handbook.html">Handbook</a></li>
+          <ul class="navlinks">
+            <li class="homebtn">
+              <a href="index.html" aria-label="Home"><i class="fa fa-home" aria-hidden="true"></i></span></a>
+            </li>
+            <li>
+              <div class="navdropdown">
+                <a href="about.html" class = "navbtn">Learn ▾</a>
+                <div class="navdropdown-links">
+                  <a href="about.html">Noise & Health</a>
+                  <a href="handbook.html">Noise Reduction Handbook</a>
+                </div>
+              </div>
+            </li>
+            <li class = "current">
+              <div class="navdropdown">
+                <a href="map.html" class = "navbtn">Mapping ▾</a>
+                <div class="navdropdown-links">
+                  <a href="map.html">Noise Map</a>
+                  <a href="monitors.html">Tools for Measuring Noise</a>
+                </div>
+              </div>
+            </li>
           </ul>
           <div class="languageSelect">
             <button class="langBtn">🌐 English ▾</button>
@@ -42,13 +59,15 @@
             <h2 class = "accentColor center">Noise Map</h2>
           </div>
           <div class = "txtMain">
-            <p>This is a map of noise data collected by the community.</p>
+            <p>Click on a tile on the map to see data from that area. A report may include the decibel level, type of noise (traffic, wildlife, music, etc.), and percieved loudness.</p>
             <span>0 dB<span>
             <span class = "floatright">140 dB</span>
             <div class = "colorcode"></div>
-            <p>Click on a tile on the map to see data from that area. A report may include the decibel level, type of noise (traffic, wildlife, music, etc.), and percieved loudness.</p>
-            <p>If you would like to report or fix problems with the map (ex: incorrect road or missing address), visit <a href="https://www.openstreetmap.org/fixthemap">openstreetmap.org/fixthemap</a>.</p>
+            <br>
             <button class = "reportBtn" id = "reportBtn">Add to the map!</button>
+            <br>
+            <br>
+            <p>If you would like to report or fix problems with the map (ex: incorrect road or missing address), visit <a href="https://www.openstreetmap.org/fixthemap">openstreetmap.org/fixthemap</a>.</p>
           </div>
         </div>
 
@@ -71,9 +90,7 @@
           <div class = "txtMain" id = "reportForm">
             <form id = mapForm>
               <h3>Decibel Level</h3>
-              <p>Sentence description here - decibel data encouraged, <a href = "monitors.html" target="_blank">link to device page<span class="material-symbols-outlined smalltext">
-                open_in_new
-                </span></a></p>
+              <p>Measure decibel level for at least 30 seconds and input the average and maximum measurement. For more information on devices to measure this, check <a href = "monitors.html" target="_blank">here<span class="material-symbols-outlined smalltext">open_in_new</span></a>.</p>
               <label for="avg">Average dB: </label>
               <input id = "avg" type = "number" min = 25 max = 140 placeholder=60></input><br><br>
               <label for="max">Max dB: </label>

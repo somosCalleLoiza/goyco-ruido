@@ -18,13 +18,26 @@
         <div class="navbar">
           <ul class="navlinks">
             <li class="homebtn">
-              <a href="index.html" aria-label="Home"
-                ><i class="fa fa-home" aria-hidden="true"></i
-              ></a>
+              <a href="index.html" aria-label="Home"><i class="fa fa-home" aria-hidden="true"></i></span></a>
             </li>
-            <li class="current"><a href="about.html">About</a></li>
-            <li><a href="map.html">Map</a></li>
-            <li><a href="handbook.html">Handbook</a></li>
+            <li>
+              <div class="navdropdown">
+                <a href="about.html" class = "navbtn">Learn ▾</a>
+                <div class="navdropdown-links">
+                  <a href="about.html">Noise & Health</a>
+                  <a href="handbook.html">Noise Reduction Handbook</a>
+                </div>
+              </div>
+            </li>
+            <li class = "current">
+              <div class="navdropdown">
+                <a href="map.html" class = "navbtn">Mapping ▾</a>
+                <div class="navdropdown-links">
+                  <a href="map.html">Noise Map</a>
+                  <a href="monitors.html">Tools for Measuring Noise</a>
+                </div>
+              </div>
+            </li>
           </ul>
           <div class="languageSelect">
             <button class="langBtn">🌐 English ▾</button>
@@ -37,19 +50,12 @@
       </header>
 
       <div class="default lightColor padded heading">
-        <h1>Monitoring Devices</h1>
+        <h1 class = "center accentColor">Tools for Measuring Noise</h1>
         <p>
           Noise data collection can be done with a variety of devices, including
-          smart phones and noise monitors.
+          smart phones and commercial sound level meters.
         </p>
-        <h2>Goyco's Noise Monitor</h2>
-        <p>
-          At the community center's library, a loaner device is available for
-          people to use to collect data. The REED 8080 Noise Monitor device is
-          avaiable to borrow for short durations to record noise levels with more
-          accuracy.
-        </p>
-        <img src="./reedDevice.png" />
+
         <h2>Phone Apps</h2>
         <p>
           Below are recommendations for various apps to collect measurements.
@@ -95,8 +101,6 @@
             </a>
           </li>
         </ul>
-
-        <h1>option 2</h1>
         <table>
           <thead>
             <tr>
@@ -110,23 +114,33 @@
             <tr>
               <td>NIOSH Sound Level Meter App</td>
               <td>iOS</td>
-              <td>?</td>
+              <td>???</td>
               <td>Free</td>
             </tr>
             <tr>
               <td>Decibel X Pro</td>
               <td>iOS and Android</td>
-              <td>?</td>
+              <td>???</td>
               <td>$50</td>
             </tr>
             <tr>
               <td>SPLnFFT Noise Meter</td>
               <td>iOS</td>
-              <td>?</td>
+              <td>???</td>
               <td>$4</td>
             </tr>
           </tbody>
         </table>
+
+        <h2>Goyco's Sound Level Meter</h2>
+        <p>
+          At the community center's library, a loaner device is available for
+          people to use to collect data. The REED 8080 Noise Monitor device can be
+          borrowed for short durations to record noise levels with more
+          accuracy.
+        </p>
+        <img src="./reedDevice.png" />
+        
       </div>
       <div class="wrapperSpace"></div>
       <footer>

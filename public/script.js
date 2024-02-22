@@ -721,7 +721,7 @@ async function showData(properties, coords) {
             blockContent.appendChild(avgdB);
 
             const maxdB = document.createElement("p");
-            maxdB.innerHTML = "Max decibel level " + currentReport.max_db;
+            maxdB.innerHTML = "Max decibel level: " + currentReport.max_db;
             blockContent.appendChild(maxdB);
 
             const device = document.createElement("p");

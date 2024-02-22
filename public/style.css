@@ -145,7 +145,7 @@ footer {
   display: block;
 }
 .langBtn:hover {
-  background-color: var(--mainLight);
+  background-color: var(--altLight);
   color: var(--mainDark);
 }
 .lang {
@@ -153,7 +153,7 @@ footer {
   cursor: pointer;
 }
 .lang:hover {
-  background-color: var(--mainLight);
+  background-color: var(--altLight);
   color: var(--mainDark);
 }
 
@@ -207,7 +207,8 @@ footer {
 }
 
 .fixedBG {
-  background-image: url(map.png);
+  background-image: url(goyco.jpeg);
+  background-size: cover;
   background-attachment: fixed;
   background-clip: border-box;
 }
@@ -757,4 +758,52 @@ input[type="radio"]:hover + label {
     padding: 7px;
   }
 
+}
+
+
+
+
+
+/* testing stuff */
+
+.navdropdown {
+  position: relative;
+}
+
+.navdropdown-links {
+  border-top: 10px solid transparent;
+  
+  background-clip: padding-box;
+  display: none;
+  position: absolute;
+  background-color: var(--altLight);
+  min-width: 158px;
+  z-index: 1;
+}
+
+.navdropdown-links a {
+  color: var(--mainDark);
+  padding: 10px 15px;
+  text-decoration: none;
+  display: block;
+  border-bottom: none;
+}
+
+.navdropdown-links a:hover {
+  color: var(--accentDark);
+  text-decoration: underline;
+  border: none;
+}
+
+.navdropdown:hover .navdropdown-links {
+  display: block;
+}
+
+table, tr, td {
+  border: 3px solid var(--accentDark);
+  padding: 20px;
+  font-size: 20px;
+}
+th {
+  text-align: left;
 }
