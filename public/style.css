@@ -800,6 +800,10 @@ table, tr, td {
   border: 3px solid var(--accentDark);
   padding: 20px;
   font-size: 20px;
+  background-color: var(--mainAccent);
+}
+td {
+  background-color: var(--mainLight);
 }
 th {
   text-align: left;
