@@ -261,9 +261,6 @@ footer {
 .home-info:hover {
   transform: scale(1.04);
 }
-.home-info:hover .home-icon {
-  color: var(--accentDark);
-}
 .home-info h2 {
   font-size: 42px;
 }

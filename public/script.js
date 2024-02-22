@@ -131,9 +131,9 @@ function styleGeo(feature) {
     let thisStyle = {
         color: "white",
         weight: 2,
-        fillOpacity: 0.6,
+        fillOpacity: 0.8,
         stroke: false,
-        fillColor: "#ff0000"
+        fillColor: "#6b7e9c"
     };
 
     //assign color based on average dB for tile
