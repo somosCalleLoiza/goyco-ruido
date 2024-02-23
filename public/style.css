@@ -30,6 +30,11 @@ html {
   scroll-margin-top: 70px;
 }
 
+table {
+  width: 100%;
+  overflow-x: scroll;
+}
+
 body {
   margin: 0px;
 }
@@ -42,6 +47,17 @@ a {
 
 .center {
   text-align: center;
+}
+.with-image {
+  display: inline-block;
+}
+.with-image img {
+  float: left;
+}
+.app-image {
+  max-width: 200px;
+  border-radius: 30px;
+  margin-right: 40px;
 }
 
 .wrapper {
@@ -172,6 +188,13 @@ footer {
 .default h2 {
   font-size: 25px;
 }
+.default h3 {
+  font-size: 22px;
+}
+
+.max500 {
+  max-width: 500px;
+}
 
 /* HOME PAGE */
 .title {
@@ -207,7 +230,7 @@ footer {
 }
 
 .fixedBG {
-  background-image: url(goyco.jpeg);
+  background-image: url(images/goyco.jpeg);
   background-size: cover;
   background-attachment: fixed;
   background-clip: border-box;
@@ -663,6 +686,10 @@ input[type="radio"]:hover + label {
 .padded {
   padding: 80px;
 }
+.extra-padded { 
+  padding-left: 180px !important;
+  padding-right: 180px !important;
+}
 .heading {
   padding-bottom: 30px;
   padding-top: 30px;
@@ -680,10 +707,6 @@ input[type="radio"]:hover + label {
   .title h1 {
     font-size: 60px;
     margin: 0px;
-  }
-
-  #about {
-    padding: 30px 40px 40px 40px;
   }
 
   .handbook {
@@ -724,6 +747,11 @@ input[type="radio"]:hover + label {
   #reportForm, #dataBlocks {
     height: fit-content;
     max-height: fit-content;
+  }
+
+  .extra-padded {
+    padding-left: 40px !important;
+    padding-right: 40px !important;
   }
 
 }
@@ -784,6 +812,7 @@ input[type="radio"]:hover + label {
   text-decoration: none;
   display: block;
   border-bottom: none;
+  font-weight: normal;
 }
 
 .navdropdown-links a:hover {
@@ -797,13 +826,13 @@ input[type="radio"]:hover + label {
 }
 
 table, tr, td {
-  border: 3px solid var(--accentDark);
-  padding: 20px;
-  font-size: 20px;
-  background-color: var(--mainAccent);
+  padding: 10px;
+  font-size: 16px;
+  background-color: var(--lightShadow);
 }
 td {
   background-color: var(--mainLight);
+  min-width: 140px;
 }
 th {
   text-align: left;

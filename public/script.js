@@ -79,7 +79,7 @@ function getColorDB(dB) {
 L.Control.Recenter = L.Control.extend({
     onAdd: function (map) {
         let btn = L.DomUtil.create('button');
-        btn.innerHTML = "Back to Goyco";
+        btn.innerHTML = "Back to Calle Loíza";
         btn.className = "mapControl";
 
         L.DomEvent.on(btn, "click", function (e) {

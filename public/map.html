@@ -59,7 +59,7 @@
             <h2 class = "accentColor center">Noise Map</h2>
           </div>
           <div class = "txtMain">
-            <p>Click on a tile on the map to see data from that area. A report may include the decibel level, type of noise (traffic, wildlife, music, etc.), and percieved loudness.</p>
+            <p>Click on a square on the map to see data from that area. Read reports for more information on the decibel levels and types of noise.</p>
             <span>0 dB<span>
             <span class = "floatright">140 dB</span>
             <div class = "colorcode"></div>
@@ -76,7 +76,7 @@
         <div id = "mapData" class = "mapTxt">
           <div class = "txtHeader">
             <button class = "back" id = "backData">X</button>
-            <h2 id = "tileName">Tile Name? Position?</h2>
+            <h2 id = "tileName">Square Position</h2>
             <div id = "tileLabeled">
             </div>
           </div>
@@ -114,7 +114,7 @@
               <h3>Location</h3>
               <p>Enter your location by clicking on the map, entering coordinates, or using your current location.
                 The exact location of a report is not saved, just the
-                tile it is a part of. Use "Zoom to Tile" to see your tile.</p>
+                square it is a part of. Use "Zoom to Square" to see your square.</p>
               
               <label for="lat">Latitude: </label>
               <input id = "lat" placeholder=18.45172 required onfocusout = "handleLoc()"></input><br><br>
@@ -123,7 +123,7 @@
 
               <div class = "btnGroup" id = "locBtns">
                 <button type="button" id = "curLoc">Use Current Location</button>
-                <button type="button" id = "tileZoom">Zoom to Tile</button>
+                <button type="button" id = "tileZoom">Zoom to Square</button>
               </div>
               
               <br>
@@ -193,8 +193,8 @@
       <div class = "popup">
         <form id = "confirmForm">
           <h3>Submit Report</h3>
-          <p>- All data collected in this form is anonymous but the information will be publicly avaiable on this website. 
-                Exact locations are abstracted to the tiles for privacy measures.
+          <p>- All data collected in this form is anonymous but the information will be publicly available on this website. 
+                Exact locations are not saved for privacy. The report will be grouped with others from the same square.
           </p>
           <input type="checkbox" id="understand" name="understand" value="understand" required>
           <label for="understand"> I understand the above and consent to uploading my info etc etc</label><br>
