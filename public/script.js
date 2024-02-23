@@ -142,6 +142,7 @@ function styleGeo(feature) {
     return thisStyle;
 }
 
+
 function onEachFeature(feature, layer) {
 
     //white outline with hover
@@ -604,6 +605,27 @@ const topRight = document.getElementById("labelGrid2");
 const bottomRight = document.getElementById("labelGrid8");
 const bottomLeft = document.getElementById("labelGrid6");
 
+
+async function getNumberReports() {
+    try {
+        const response = await fetch('/api/getNumReports');
+        const numReports = await response.json();
+        return numReports;
+    } catch (error) {
+        console.error('Error fetching number of reports:', error);
+        throw error;
+    }
+}
+
+async function updateNoiseReports() {
+    try {
+        const numberOfReports = await getNumberReports();
+        document.getElementById('numReports').innerText = numberOfReports;
+    } catch (error) {
+        console.error('An error occurred while updating noise reports:', error);
+    }
+}
+
 //showData
 async function showData(properties, coords) {
 
@@ -787,5 +809,29 @@ function toggleReport(reportNum) {
     } else {
         reportBlock.style.height = "fit-content";
         icon.innerHTML = "-";
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    document.getElementById('downloadButton').addEventListener('click', function () {
+        downloadCSV();
+    });
+});
+
+async function downloadCSV() {
+    try {
+        const response = await fetch('/api/getAllReportsCSV');
+        const csvData = await response.text();
+        const blob = new Blob([csvData], { type: 'text/csv' });
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'noise_reports.csv';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(url);
+    } catch (error) {
+        console.error('Error downloading CSV:', error);
     }
 }

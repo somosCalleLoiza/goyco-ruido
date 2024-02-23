@@ -3,6 +3,7 @@ const wkx = require('wkx');
 const { Client } = require('pg');
 const path = require('path');
 require('dotenv').config();
+const { Parser } = require('json2csv');
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -108,6 +109,74 @@ app.post('/api/getReports', async (req, res) => {
         res.status(500).send('Internal Server Error');
     }
 });
+
+app.get('/api/getNumReports', async (req, res) => {
+    try {
+        const result = await client.query('SELECT COUNT(*) FROM noise_report_data');
+        const rowCount = result.rows[0].count;
+        res.json(rowCount);
+
+    } catch (error) {
+        console.error('Error:', error);
+        res.status(500).send('Internal Server Error');
+    }
+});
+
+
+app.get('/api/getAllReportsCSV', async (req, res) => {
+    try {
+        const reports = (await client.query('SELECT * FROM noise_reports')).rows;
+        const data = (await client.query('SELECT * FROM noise_report_data')).rows;
+
+        // Define fields for CSV conversion
+        const fields = [
+            'avgdB',
+            'avgLoud',
+            'data.decibel.avg',
+            'data.decibel.max',
+            'data.decibel.device',
+            'data.time',
+            'data.loudness',
+            'data.feeling',
+            'data.tags'
+        ];
+
+        // Map database response to appropriate format for CSV
+        const csvData = reports.map((dbResponse) => {
+            // Decode WKB (Well Known Binary) to coordinates
+            const geometry = wkx.Geometry.parse(Buffer.from(dbResponse.geometry, 'hex'));
+            const coordinates = geometry.toGeoJSON().coordinates;
+
+            // Filter data for the current report_id
+            const reportData = data.filter((d) => d.report_id === dbResponse.id);
+
+            return {
+                avgdB: parseInt(dbResponse.avg_db),
+                avgLoud: parseInt(dbResponse.avg_loudness),
+                'data.decibel.avg': reportData.map((d) => parseInt(d.avg_db)).join(';'),
+                'data.decibel.max': reportData.map((d) => parseInt(d.max_db)).join(';'),
+                'data.decibel.device': reportData.map((d) => d.device).join(';'),
+                'data.time': reportData.map((d) => d.time).join(';'),
+                'data.loudness': reportData.map((d) => parseInt(d.loudness)).join(';'),
+                'data.feeling': reportData.map((d) => parseInt(d.feeling)).join(';'),
+                'data.tags': reportData.map((d) => parseTags(d.tags)).join(';')
+            };
+        });
+
+        // Convert data to CSV format
+        const parser = new Parser({ fields });
+        const csv = parser.parse(csvData);
+
+        // Set response headers for CSV download
+        res.setHeader('Content-disposition', 'attachment; filename=noise_reports.csv');
+        res.set('Content-Type', 'text/csv');
+        res.status(200).send(csv);
+    } catch (error) {
+        console.error('Error generating CSV data:', error);
+        res.status(500).send('Internal Server Error');
+    }
+});
+
 
 app.get('/api/getTiles', async (req, res) => {
     try {
