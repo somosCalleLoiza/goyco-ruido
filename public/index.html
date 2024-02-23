@@ -59,6 +59,7 @@
           <div class="titleBox">
             <h1>Noise on Loíza Street</h1>
             <p>Learn about noise pollution and how you can help</p>
+           <h3>Noise Reports: <span id="numReports"></span></h3>
           </div>
         </div>
         <div class = "downPoint lightColor"></div>
@@ -73,6 +74,7 @@
             Learn about noise pollution, its health implications,
             and noise policies in Puerto Rico.
           </p>
+        
           <a href="about.html">Learn more about noise ></a>
           </div>
 
@@ -113,5 +115,8 @@
     </div>
 
     <script defer src="script.js"></script>
+    <script>   window.onload = function () {
+            updateNoiseReports();
+        };</script>
   </body>
 </html>
