@@ -378,13 +378,12 @@ function createTag(tag) {
     tagBtn.type = "button";
     tagBtn.addEventListener("click", function(event){
         event.preventDefault();
-        addTag(tag);
-        tagBtn.parentNode.removeChild(tagBtn);
+        addTag(tag, tagBtn);
     });
     tagDrop.appendChild(tagBtn);
 }
 
-function addTag(tag) {
+function addTag(tag, remove) {
     userTags.push(tag);
 
     const selectedTags = document.getElementById("selectedTags");
@@ -408,6 +407,8 @@ function addTag(tag) {
 
     document.getElementById("tagSearch").value = "";
     document.getElementById("tagDropdown").style.display = "none";
+
+    remove.parentNode.removeChild(remove);
 }
 
 function hideTags(event) {
