@@ -232,6 +232,7 @@ footer {
 .fixedBG {
   background-image: url(images/goyco.jpeg);
   background-size: cover;
+  background-position: center;
   background-attachment: fixed;
   background-clip: border-box;
 }
@@ -614,6 +615,10 @@ input[type="radio"]:hover + label {
   color: var(--mainDark);
 }
 
+#device, #loudness {
+  max-width: 100%;
+}
+
 /* Popups */
 
 .popupContainer {
@@ -745,7 +750,10 @@ input[type="radio"]:hover + label {
 /*mobile*/
 @media only screen and (max-width: 500px) {
   .mapTxt {
-    padding: 0px;
+    padding: 0px !important;
+  }
+  .mapGrid {
+    padding: 20px;
   }
 
   .navbar,

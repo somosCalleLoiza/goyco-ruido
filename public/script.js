@@ -376,11 +376,11 @@ function createTag(tag) {
     const tagBtn = document.createElement("button");
     tagBtn.innerHTML = tag;
     tagBtn.type = "button";
-    tagBtn.onclick = (event) => {
+    tagBtn.addEventListener("click", function(event){
         event.preventDefault();
         addTag(tag);
         tagBtn.parentNode.removeChild(tagBtn);
-    };
+    });
     tagDrop.appendChild(tagBtn);
 }
 
