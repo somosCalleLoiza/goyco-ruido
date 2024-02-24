@@ -360,6 +360,7 @@ function displayLocCoords(lat, long) {
 
 let tagList = ["Car", "Motorcycle", "Traffic", "Construction", "Wildlife", "Music", "Restaurant", "Bar", "Rain", "Aircraft", "Indoor", "Outdoor", "Wind"];
 let userTags = [];
+let canHide = true;
 createTags();
 
 document.getElementById("tagSearch").oninput = function (e) {
@@ -379,6 +380,7 @@ function createTag(tag) {
     tagBtn.addEventListener("click", function(event){
         event.preventDefault();
         addTag(tag, tagBtn);
+        canHide = true;
     });
     tagBtn.className = "tagBtn"
     tagDrop.appendChild(tagBtn);
@@ -410,23 +412,20 @@ function addTag(tag, remove) {
     document.getElementById("tagDropdown").style.display = "none";
 
     remove.parentNode.removeChild(remove);
-    alert(userTags);
 }
 
+document.getElementById("tagDropdown").addEventListener("mousedown", function(event){
+    event.preventDefault();
+    canHide = false;
+});
 document.getElementById("tagSearch").addEventListener("focusout", function(event){
-    if (event.relatedTarget != null) {
-        if (event.relatedTarget.className == "tagBtn") {
-            return;
-        }
+    event.preventDefault();
+    if (canHide) {
+        document.getElementById("tagSearch").value = "";
+        document.getElementById("tagDropdown").style.display = "none";
     }
-    document.getElementById("tagSearch").value = "";
-    document.getElementById("tagDropdown").style.display = "none";
+    
 });
-
-document.getElementById("tagDropdown").on('mousedown',function (event) {
-    return false;
-});
-
 
 function filterTags() {
     let input = document.getElementById("tagSearch");
