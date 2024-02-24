@@ -380,6 +380,7 @@ function createTag(tag) {
         event.preventDefault();
         addTag(tag, tagBtn);
     });
+    tagBtn.className = "tagBtn"
     tagDrop.appendChild(tagBtn);
 }
 
@@ -414,13 +415,18 @@ function addTag(tag, remove) {
 
 document.getElementById("tagSearch").addEventListener("focusout", function(event){
     if (event.relatedTarget != null) {
-        if (event.relatedTarget.tagName == "BUTTON") {
+        if (event.relatedTarget.className == "tagBtn") {
             return;
         }
     }
     document.getElementById("tagSearch").value = "";
     document.getElementById("tagDropdown").style.display = "none";
 });
+
+document.getElementById("tagDropdown").on('mousedown',function (event) {
+    return false;
+});
+
 
 function filterTags() {
     let input = document.getElementById("tagSearch");

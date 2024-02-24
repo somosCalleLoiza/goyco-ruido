@@ -32,6 +32,9 @@ html {
 
 table {
   width: 100%;
+}
+.tableContainer {
+  width: 100%;
   overflow-x: scroll;
 }
 
@@ -752,8 +755,12 @@ input[type="radio"]:hover + label {
   .mapTxt {
     padding: 0px !important;
   }
-  .mapGrid {
+  .mapGrid, .padded {
     padding: 20px;
+  }
+  .extra-padded {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
   }
 
   .navbar,
