@@ -5,7 +5,7 @@
 :root {
   --mainDark: #424242;
   --mainLight: #f4f4f4;
-  --lightShadow: #bbbbbb;
+  --lightShadow: #c1c1c1;
   --altLight: #ffffff;
   --lightTransparent: #eeeeeece;
   --mainAccent: #c7ebeb;
@@ -255,6 +255,14 @@ footer {
 .lightColor {
   background-color: var(--mainLight);
 }
+.lightShadow {
+  background-color: var(--lightShadow);
+}
+.formNote {
+  padding: 10px;
+  border-radius: 10px;
+  text-align: center;
+}
 .last {
   margin-bottom: 50px;
 }
@@ -321,14 +329,14 @@ footer {
 /* MAP PAGE */
 
 #map {
-  background-color: #00000022;
+  background-color: var(--lightShadow);
   z-index: 0;
-  min-height: 500px;
+  height: calc(100vh - 160px - 80px);
 }
 .mapGrid {
   padding: 40px;
   display: grid;
-  grid-template-columns: 65% auto;
+  grid-template-columns: 60% auto;
   grid-template-rows:  calc(100vh - 160px - 80px);
 }
 .mapControl {
@@ -349,13 +357,26 @@ footer {
 
 .mapTxt {
   padding: 0px 0px 0px 30px;
+  height: calc(100vh - 160px - 160px);
 
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: auto 1fr;
 }
 .txtMain {
   height: 100%;
-  overflow: scroll;
+  padding: 10px;
+  overflow-y: auto;
+}
+
+.custom-scroll ::-webkit-scrollbar {
+  background-color: var(--lightShadow);
+  color: var(--accentLight);
+  border-radius: 10px;
+  width: 10px;
+}
+.custom-scroll ::-webkit-scrollbar-thumb {
+  background-color: var(--accentDark);
+  border-radius: 10px;
 }
 
 .colorcode {
@@ -370,13 +391,6 @@ footer {
   font-size: 20px !important;
 }
 
-#dataBlocks {
-  height: 337px;
-}
-#reportForm {
-  max-height: 420px;
-}
-
 button {
   cursor: pointer;
   position: relative;
@@ -386,6 +400,7 @@ button {
   border-radius: 10px;
   font-family: inherit;
   transition: 0.2s;
+  margin: 5px;
 }
 
 button:hover {
@@ -403,46 +418,20 @@ button:hover {
   display: none;
 }
 
-.reportBtn {
-  box-shadow: 2px 2px var(--mainDark);
-  padding: 10px 15px;
-  font-size: 18px;
+button {
+  padding: 5px 10px;
 }
 
 form button {
-  padding: 5px 10px;
   font-size: 16px;
   margin-right: 5px;
   margin-bottom: 5px;
 }
 
-.reportBtn:active {
-  box-shadow: none;
-  transform: translate(2px, 2px);
-}
 
 #reportForm h3 {
   background-color: var(--mainAccent);
   padding: 5px;
-  text-align: center;
-}
-
-.slidecontainer {
-  width: 95%;
-}
-.slidecontainer input {
-  width: 100%;
-  height: 8px;
-  appearance: none;
-  background-color: var(--mainAccent);
-  color: var(--mainDark);
-  border-radius: 10px;
-}
-.num {
-  text-align: center;
-  font-size: 40px;
-}
-#loudTxt {
   text-align: center;
 }
 
@@ -569,7 +558,7 @@ input[type="radio"]:hover + label {
 .tagContainer {
   position: relative;
   display: inline-block;
-  margin: 5px;
+  font-size: 20px;
 }
 .tag {
   background-color: var(--mainAccent);
@@ -577,12 +566,12 @@ input[type="radio"]:hover + label {
   border-radius: 20px;
   margin: 5px;
   padding: 10px;
+  font-size: 20px;
   width: fit-content;
 }
 .tagX {
   background-color: transparent;
   border: none;
-  font-size: small;
   font-weight: bold;
   padding: 0px;
   padding-left: 10px;
@@ -591,7 +580,6 @@ input[type="radio"]:hover + label {
 .tagX:hover {
   background-color: transparent;
   border: none;
-  font-size: small;
   font-weight: bolder;
 }
 #selectedTags {
@@ -604,7 +592,7 @@ input[type="radio"]:hover + label {
   display: none;
   position: absolute;
   background-color: var(--altLight);
-  min-width: 200px;
+  width: 100%;
   z-index: 1;
 }
 
@@ -612,6 +600,7 @@ input[type="radio"]:hover + label {
   color: var(--mainDark);
   background-color: var(--altLight);
   border: none;
+  margin: 0;
   font: inherit;
   width: 100%;
   border-radius: 0%;
@@ -629,20 +618,15 @@ input[type="radio"]:hover + label {
 
 .popupContainer {
   position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
+  inset: 0 0 0 0;
   background: rgba(0, 0, 0, 0.3);
   display: none;
   z-index: 1000;
+  align-items: center;
+  justify-content: center;
 }
 
 .popup {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   width: max-content;
   max-width: 50%;
   background-color: var(--mainLight);
@@ -663,6 +647,7 @@ input[type="radio"]:hover + label {
 .popup input:focus {
   outline: 2px solid var(--mainAccent);
 }
+
 
 /* HANDBOOK */
 .handbook {
@@ -703,6 +688,7 @@ input[type="radio"]:hover + label {
   }
   .mapTxt {
     padding: 20px;
+    height: fit-content;
   }
   .title h1 {
     font-size: 60px;

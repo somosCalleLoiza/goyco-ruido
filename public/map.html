@@ -52,24 +52,23 @@
         <div class = "navspace lightColor"></div>
     </header>
 
-    <div class = "mapGrid lightColor default">
+    <div class = "mapGrid lightColor default custom-scroll">
         <div id="map"></div>
         <div id = "mapInfo" class = "mapTxt">
           <div class = "txtHeader">
             <h2 class = "accentColor center">Noise Map</h2>
           </div>
           <div class = "txtMain">
+            <h3>Total reports: <span id="numReports"></span></h3>
             <p>Click on a square on the map to see data from that area. Read reports for more information on the decibel levels and types of noise.</p>
             <span>0 dB<span>
             <span class = "floatright">140 dB</span>
             <div class = "colorcode"></div>
             <br>
-            <br>
-            <button class = "reportBtn" id = "reportBtn">Add to the map!</button>
-            <br>
-            <br>
-             <button id="downloadButton">Download CSV of all data</button>
-            <br>
+            <div class = "center">
+              <button class = "reportBtn" id = "reportBtn">Add to Map</button>
+              <button id="downloadButton">Download CSV of All Data</button>
+            </div>
             <p>If you would like to report or fix problems with the map (ex: incorrect road or missing address), visit 
               <a href="https://www.openstreetmap.org/fixthemap" target="_blank">openstreetmap.org/fixthemap<span class="material-symbols-outlined smalltext">open_in_new</span></a>
             </p>
@@ -95,8 +94,9 @@
           <div class = "txtMain" id = "reportForm">
             <form id = mapForm>
               <h3>Decibel Level</h3>
-              <p>Decibel data is optional but highly encouraged. Measure the decibel level for at least 30 seconds and input the average and maximum 
-                measurement. For more information on devices to measure this, check <a href = "monitors.html" target="_blank">here<span class="material-symbols-outlined smalltext">open_in_new</span></a>.</p>
+              <p class = "lightShadow formNote">Decibel data is optional but highly encouraged. For more information on how to measure this, go <a href = "monitors.html" target="_blank">here<span class="material-symbols-outlined smalltext">open_in_new</span></a></p>
+
+              <p>Measure the decibel level for at least 30 seconds and input the average and maximum measurement.</p>
               <label for="avg">Average dB: </label>
               <input id = "avg" type = "number" min = 25 max = 140 placeholder=60></input><br><br>
               <label for="max">Max dB: </label>
@@ -115,9 +115,8 @@
               <br>
               <br>
               <h3>Location</h3>
-              <p>Enter your location by clicking on the map, entering coordinates, or using your current location.
-                The exact location of a report is not saved, just the
-                square it is a part of. Use "Zoom to Square" to see your square.</p>
+              <p class="lightShadow formNote">The exact location of a report is not saved, just the square it is a part of</p>
+              <p>Enter a location by clicking on the map, entering coordinates, or using your current location.</p>
               
               <label for="lat">Latitude: </label>
               <input id = "lat" placeholder=18.45172 required onfocusout = "handleLoc()"></input><br><br>
@@ -126,12 +125,9 @@
 
               <div class = "btnGroup" id = "locBtns">
                 <button type="button" id = "curLoc">Use Current Location</button>
-                <button type="button" id = "tileZoom">Zoom to Square</button>
               </div>
               
-              <br>
               <h3>Date & Time</h3>
-              <p>The date and time can help find trends in noise levels. </p>
               <label for = "date">Date: </label>
               <input type="date" id="date" name="date" required/>
               <br>
@@ -175,7 +171,7 @@
               <br>
 
               <h3>Tags</h3>
-              <p>Use tags to describe the noise type and measurement conditions (traffic, outdoor, windy, etc.).</p>
+              <p>Use tags to describe noise sources and measurement conditions (car, indoor, windy, etc.).</p>
               <div class="tagContainer">
                 <input type="text" placeholder="Search tags..." id="tagSearch" onkeyup="filterTags()" onfocusout = "hideTags(window.event)">
                 <div id="tagDropdown" class="dropdown">
@@ -196,7 +192,7 @@
       <div class = "popup">
         <form id = "confirmForm">
           <h3>Submit Report</h3>
-          <p>- All data collected in this form is anonymous but the information will be publicly available on this website. 
+          <p> All data collected in this form is anonymous but the information will be publicly available on this website. 
                 Exact locations are not saved for privacy. The report will be grouped with others from the same square.
           </p>
           <input type="checkbox" id="understand" name="understand" value="understand" required>

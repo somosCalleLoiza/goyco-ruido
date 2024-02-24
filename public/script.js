@@ -170,6 +170,7 @@ function onEachFeature(feature, layer) {
 //for picking location by clicking map
 function onMapClick(e) {
     if (locationMode == true) {
+        displayLocCoords(e.latlng.lat, e.latlng.lng);
         handleLoc(e.latlng.lat, e.latlng.lng);
     }
 }
@@ -219,7 +220,7 @@ backData.onclick = function () {
     data.style.display = "none";
 }
 backReport.onclick = function () {
-    leavePopup.style.display = "block";
+    leavePopup.style.display = "flex";
 }
 
 const leaveForm = document.getElementById("leaveForm");
@@ -253,6 +254,7 @@ curLoc.onclick = (event) => {
     event.preventDefault();
     if ("geolocation" in navigator) {
         navigator.geolocation.getCurrentPosition((position) => {
+            displayLocCoords(position.coords.latitude, position.coords.longitude);
             handleLoc(position.coords.latitude, position.coords.longitude);
         });
     }
@@ -261,20 +263,12 @@ curLoc.onclick = (event) => {
     }
 
 }
-const tileZoom = document.getElementById("tileZoom");
-tileZoom.onclick = (event) => {
-    event.preventDefault();
-    //zoom to test tile if it exists
-    if (!(testTile.getCenter().equals(L.latLng(0, 0)))) {
-        map.setView(testTile.getCenter(), 19);
-    }
-
-}
 
 //calls the relevant functions after coords are selected through any method
 function handleLoc(lat, long) {
     //if you want reports to be restricted to the monitoring area, uncomment checkBounds
     //let valid = checkBounds(lat, long);
+
     let valid = true;
 
     if (lat == null) {
@@ -288,7 +282,7 @@ function handleLoc(lat, long) {
 
     if (valid) {
         let tile = calcLocation(lat, long);
-        displayLocCoords(tile[0], tile[1]);
+        //displayLocCoords(tile[0], tile[1]);
 
         //show tile on map for confirmation
 
@@ -450,7 +444,7 @@ const mapForm = document.getElementById("mapForm");
 mapForm.addEventListener("submit", confirmSubmit);
 function confirmSubmit(event) {
     event.preventDefault();
-    document.getElementById("submitPopup").style.display = "block";
+    document.getElementById("submitPopup").style.display = "flex";
 }
 const confirmForm = document.getElementById("confirmForm");
 confirmForm.addEventListener("submit", mapSubmit);
@@ -664,7 +658,7 @@ async function showData(properties, coords) {
         console.error('Error:', error.message);
     }
 
-    tName.innerHTML = "Tile " + coords[0][1] + ", " + coords[0][0];
+    tName.innerHTML = "Square " + coords[0][1] + ", " + coords[0][0];
 
     //set coordinates for tile visual
     topLeft.innerHTML = coords[0][1] + ", " + coords[0][0];
@@ -691,7 +685,7 @@ async function showData(properties, coords) {
     statBlock.className = "data";
 
     const statHeader = document.createElement("h3");
-    statHeader.innerHTML = "Tile Data";
+    statHeader.innerHTML = "Square Data";
     statBlock.appendChild(statHeader);
 
     const reportNum = document.createElement("p");
