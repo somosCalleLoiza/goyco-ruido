@@ -409,9 +409,10 @@ function addTag(tag, remove) {
     document.getElementById("tagDropdown").style.display = "none";
 
     remove.parentNode.removeChild(remove);
+    alert(userTags);
 }
 
-function hideTags(event) {
+document.getElementById("tagSearch").addEventListener("focusout", function(event){
     if (event.relatedTarget != null) {
         if (event.relatedTarget.tagName == "BUTTON") {
             return;
@@ -419,7 +420,7 @@ function hideTags(event) {
     }
     document.getElementById("tagSearch").value = "";
     document.getElementById("tagDropdown").style.display = "none";
-}
+});
 
 function filterTags() {
     let input = document.getElementById("tagSearch");
