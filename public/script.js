@@ -184,8 +184,8 @@ Input for adding data to the map
 //local vars for responses
 let reportTile;
 
-let testTile = L.polygon([[0, 0]], { color: '#424242' }).addTo(map);
-let testMarker = L.marker([0, 0]).addTo(map);
+let testTile = L.polygon([[0, 0]], { color: '#424242' , alt: "Location Area"}).addTo(map);
+let testMarker = L.marker([0, 0], {alt: "Location"}).addTo(map);
 
 let reportData =
 {
@@ -215,16 +215,16 @@ const reportbtn = document.getElementById("reportBtn");
 const leavePopup = document.getElementById("leavePopup");
 
 //hide/show main and report pages
-backData.onclick = function () {
+backData.addEventListener("click", function(event){
     info.style.display = "block";
     data.style.display = "none";
-}
-backReport.onclick = function () {
+});
+backReport.addEventListener("click", function(event){
     leavePopup.style.display = "flex";
-}
+});
 
 const leaveForm = document.getElementById("leaveForm");
-leaveForm.onclick = function () {
+leaveForm.addEventListener("click", function(event){
     info.style.display = "block";
     report.style.display = "none";
     leavePopup.style.display = "none";
@@ -234,23 +234,23 @@ leaveForm.onclick = function () {
     testMarker.setLatLng([0, 0]);
     testTile.setLatLngs([[0, 0]]);
     locationMode = false;
-}
-document.getElementById("stayForm").onclick = function () {
+});
+document.getElementById("stayForm").addEventListener("click", function(event){
     leavePopup.style.display = "none";
-}
+});
 
-reportbtn.onclick = function () {
+reportbtn.addEventListener("click", function(event){
     info.style.display = "none";
     data.style.display = "none";
     report.style.display = "block";
 
     locationMode = true;
-}
+});
 
 
 //Location
 const curLoc = document.getElementById("curLoc");
-curLoc.onclick = (event) => {
+curLoc.addEventListener("click", function(event){
     event.preventDefault();
     if ("geolocation" in navigator) {
         navigator.geolocation.getCurrentPosition((position) => {
@@ -262,7 +262,7 @@ curLoc.onclick = (event) => {
         alert("Geolocation is not available");
     }
 
-}
+});
 
 //calls the relevant functions after coords are selected through any method
 function handleLoc(lat, long) {
@@ -397,12 +397,12 @@ function addTag(tag, remove) {
     const tagX = document.createElement("button");
     tagX.innerHTML = "X";
     tagX.className = "tagX";
-    tagX.onclick = (event) => {
+    tagX.addEventListener("click", function(event){
         event.preventDefault();
         userTags.splice(userTags.indexOf(tag), 1);
         createTag(tag);
         tagX.parentNode.parentNode.removeChild(newTag);
-    };
+    });
     tagX.type = "button";
     newTag.appendChild(tagX);
 
@@ -456,10 +456,10 @@ function confirmSubmit(event) {
 const confirmForm = document.getElementById("confirmForm");
 confirmForm.addEventListener("submit", mapSubmit);
 
-document.getElementById("popCancel").onclick = function () {
+document.getElementById("popCancel").addEventListener("click", function(event){
     document.getElementById("submitPopup").style.display = "none";
     confirmForm.reset();
-}
+});
 
 async function mapSubmit(event) {
     event.preventDefault();
@@ -606,7 +606,6 @@ const topRight = document.getElementById("labelGrid2");
 const bottomRight = document.getElementById("labelGrid8");
 const bottomLeft = document.getElementById("labelGrid6");
 
-
 async function getNumberReports() {
     try {
         const response = await fetch('/api/getNumReports');
@@ -727,9 +726,9 @@ async function showData(properties, coords) {
 
         const blockHeader = document.createElement("button");
         blockHeader.innerHTML = "Report #" + (i + 1) + "<span class = \"collapseIcon\" id = \"icon" + i + "\">+</span>";
-        blockHeader.onclick = function () {
+        blockHeader.addEventListener("click", function(event){
             toggleReport(i);
-        }
+        });
         dataBlock.appendChild(blockHeader);
         blockContent.appendChild(document.createElement("br"));
 
