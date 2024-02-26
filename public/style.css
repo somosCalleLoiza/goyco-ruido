@@ -180,16 +180,21 @@ footer {
   box-shadow: 10px 10px var(--accentDark);
 }
 
-
 .default h1 {
   font-size: 42px;
   line-height: 80px;
 }
-.default p, .default a, .default label, .default input, .default select, .default button  {
+.default p,
+.default a,
+.default label,
+.default input,
+.default select,
+.default button {
   font-size: 20px;
 }
 .default h2 {
   font-size: 25px;
+  font-weight: heavy;
 }
 .default h3 {
   font-size: 22px;
@@ -240,7 +245,7 @@ footer {
   position: fixed;
   background-clip: border-box;
   background-attachment: fixed;
-  width: 100%; 
+  width: 100%;
   height: 100%;
 }
 .bar {
@@ -284,12 +289,12 @@ footer {
 .downPoint {
   width: 100%;
   height: 50px;
-  clip-path: polygon(0 0,50% 50px,100% 0,100% 100%,0 100%);
+  clip-path: polygon(0 0, 50% 50px, 100% 0, 100% 100%, 0 100%);
 }
 .upPoint {
   width: 100%;
   height: 50px;
-  clip-path: polygon(0 50px,50% 0,100% 50px,100% 100%,0 100%);
+  clip-path: polygon(0 50px, 50% 0, 100% 50px, 100% 100%, 0 100%);
 }
 .home-info {
   margin: 30px;
@@ -303,7 +308,8 @@ footer {
 .home-info h2 {
   font-size: 42px;
 }
-.home-info p, .home-info a {
+.home-info p,
+.home-info a {
   font-size: 22px;
 }
 .home-image {
@@ -334,6 +340,42 @@ footer {
   text-decoration: none;
 }
 
+.tiles-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.tile {
+  width: calc(
+    33.33% - 20px
+  ); /* 33.33% width for three tiles in a row with 20px gap */
+  background-color: var(--altLight);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 0px 10px 0px var(--lightShadow);
+}
+
+.tile h2 {
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+  font-weight: heavy;
+}
+
+.tile .sub-heading {
+  color: #666;
+}
+
+@media (max-width: 768px) {
+  .tiles-container {
+    flex-direction: column; /* Stack tiles vertically on smaller screens */
+  }
+
+  .tile {
+    width: 100%; /* Full width for each tile on smaller screens */
+  }
+}
+
 /* MAP PAGE */
 
 #map {
@@ -345,7 +387,7 @@ footer {
   padding: 40px;
   display: grid;
   grid-template-columns: 60% auto;
-  grid-template-rows:  calc(100vh - 160px - 80px);
+  grid-template-rows: calc(100vh - 160px - 80px);
 }
 .mapControl {
   padding: 7px;
@@ -355,11 +397,11 @@ footer {
   background-color: #ffffff;
   border-radius: 4px;
   border: 2px solid #00000020;
-  background-clip:padding-box;
+  background-clip: padding-box;
 }
 .mapControl:hover {
   color: #000000;
-  background-color: #F4F4F4;
+  background-color: #f4f4f4;
   cursor: pointer;
 }
 
@@ -390,7 +432,24 @@ footer {
 .colorcode {
   width: 100%;
   height: 15px;
-  background-image: linear-gradient(to right, #48f702, #48f702, #69f702, #89f702, #a6f702, #b6f702, #caf702, #e7f702, #f7ef02, #f7c602, #f79902, #f77d02, #f76002, #f73802, #f70202);
+  background-image: linear-gradient(
+    to right,
+    #48f702,
+    #48f702,
+    #69f702,
+    #89f702,
+    #a6f702,
+    #b6f702,
+    #caf702,
+    #e7f702,
+    #f7ef02,
+    #f7c602,
+    #f79902,
+    #f77d02,
+    #f76002,
+    #f73802,
+    #f70202
+  );
 }
 .floatright {
   float: right;
@@ -435,7 +494,6 @@ form button {
   margin-right: 5px;
   margin-bottom: 5px;
 }
-
 
 #reportForm h3 {
   background-color: var(--mainAccent);
@@ -622,7 +680,8 @@ input[type="radio"]:hover + label {
   color: var(--mainDark);
 }
 
-#device, #loudness {
+#device,
+#loudness {
   max-width: 100%;
 }
 
@@ -660,7 +719,6 @@ input[type="radio"]:hover + label {
   outline: 2px solid var(--mainAccent);
 }
 
-
 /* HANDBOOK */
 .handbook {
   padding: 40px;
@@ -683,7 +741,7 @@ input[type="radio"]:hover + label {
 .padded {
   padding: 80px;
 }
-.extra-padded { 
+.extra-padded {
   padding-left: 180px !important;
   padding-right: 180px !important;
 }
@@ -736,13 +794,14 @@ input[type="radio"]:hover + label {
     order: 2;
   }
   .home-image {
-    margin-bottom: 80px; 
+    margin-bottom: 80px;
   }
   .home-icon {
-    margin-top: 80px; 
+    margin-top: 80px;
   }
 
-  #reportForm, #dataBlocks {
+  #reportForm,
+  #dataBlocks {
     height: fit-content;
     max-height: fit-content;
   }
@@ -751,7 +810,6 @@ input[type="radio"]:hover + label {
     padding-left: 40px !important;
     padding-right: 40px !important;
   }
-
 }
 
 /*mobile*/
@@ -759,7 +817,8 @@ input[type="radio"]:hover + label {
   .mapTxt {
     padding: 0px !important;
   }
-  .mapGrid, .padded {
+  .mapGrid,
+  .padded {
     padding: 20px;
   }
   .extra-padded {
@@ -787,12 +846,7 @@ input[type="radio"]:hover + label {
   .home-info {
     padding: 7px;
   }
-
 }
-
-
-
-
 
 /* testing stuff */
 
@@ -802,7 +856,7 @@ input[type="radio"]:hover + label {
 
 .navdropdown-links {
   border-top: 10px solid transparent;
-  
+
   background-clip: padding-box;
   display: none;
   position: absolute;
@@ -830,7 +884,9 @@ input[type="radio"]:hover + label {
   display: block;
 }
 
-table, tr, td {
+table,
+tr,
+td {
   padding: 10px;
   font-size: 16px;
   background-color: var(--lightShadow);
@@ -848,11 +904,6 @@ li {
   padding: 5px;
 }
 
-
 .material-symbols-outlined {
-  font-variation-settings:
-  'FILL' 0,
-  'wght' 400,
-  'GRAD' 0,
-  'opsz' 24
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
 }
