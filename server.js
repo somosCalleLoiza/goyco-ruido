@@ -130,15 +130,16 @@ app.get('/api/getAllReportsCSV', async (req, res) => {
 
         // Define fields for CSV conversion
         const fields = [
-            'avgdB',
-            'avgLoud',
-            'data.decibel.avg',
-            'data.decibel.max',
-            'data.decibel.device',
-            'data.time',
-            'data.loudness',
-            'data.feeling',
-            'data.tags'
+            'Tile Coordinates',
+            'Average Decibel Level for Square',
+            'Average Loudness (out of 5)',
+            'Average Decibel Level of Reading',
+            'Max Decibel Level of Reading',
+            'Measurement Device',
+            'Time',
+            'Loudness (out of 5)',
+            'Emotion (out of 5)',
+            'Tags'
         ];
 
         // Map database response to appropriate format for CSV
@@ -151,15 +152,17 @@ app.get('/api/getAllReportsCSV', async (req, res) => {
             const reportData = data.filter((d) => d.report_id === dbResponse.id);
 
             return {
-                avgdB: parseInt(dbResponse.avg_db),
-                avgLoud: parseInt(dbResponse.avg_loudness),
-                'data.decibel.avg': reportData.map((d) => parseInt(d.avg_db)).join(';'),
-                'data.decibel.max': reportData.map((d) => parseInt(d.max_db)).join(';'),
-                'data.decibel.device': reportData.map((d) => d.device).join(';'),
-                'data.time': reportData.map((d) => d.time).join(';'),
-                'data.loudness': reportData.map((d) => parseInt(d.loudness)).join(';'),
-                'data.feeling': reportData.map((d) => parseInt(d.feeling)).join(';'),
-                'data.tags': reportData.map((d) => parseTags(d.tags)).join(';')
+                'Tile Coordinates': `${coordinates[0][0]}, ${coordinates[0][1]}`,
+                'Average Decibel Level for Square': parseInt(dbResponse.avg_db),
+                'Average Loudness (out of 5)': parseInt(dbResponse.avg_loudness),
+                'Average Decibel Level of Reading': reportData.map((d) => parseInt(d.avg_db)).join(';'),
+                'Max Decibel Level of Reading': reportData.map((d) => parseInt(d.max_db)).join(';'),
+                'Measurement Device': reportData.map((d) => d.device).join(';'),
+                'Date': reportData.map((d) => d.date).join(';'),
+                'Time': reportData.map((d) => d.time).join(';'),
+                'Loudness (out of 5)': reportData.map((d) => parseInt(d.loudness)).join(';'),
+                'Emotion (out of 5)': reportData.map((d) => parseInt(d.feeling)).join(';'),
+                'Tags': reportData.map((d) => parseTags(d.tags)).join(';')
             };
         });
 
@@ -232,7 +235,7 @@ app.get('/', (req, res) => {
 
 
 app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
+    console.log(`Server is running on port ${port} `);
 });
 
 // Update data of a specific tile
@@ -252,9 +255,9 @@ app.post('/api/updateTile', async (req, res) => {
 
             // Update the noise_report_data table with new data
             await client.query(`
-                INSERT INTO noise_report_data (report_id, avg_db, max_db, device, time, date, loudness, feeling, tags)
-                VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
-            `, [
+                INSERT INTO noise_report_data(report_id, avg_db, max_db, device, time, date, loudness, feeling, tags)
+            VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9)
+                `, [
                 matchingTile.id,         // $1
                 data.decibel.avg,        // $2
                 data.decibel.max,        // $3 
@@ -271,7 +274,7 @@ app.post('/api/updateTile', async (req, res) => {
                 SELECT AVG(avg_db) AS newAvgdB, AVG(loudness) AS newAvgLoud
                 FROM noise_report_data
                 WHERE report_id = $1
-            `, [matchingTile.id]);
+                `, [matchingTile.id]);
 
             const newAvgdB = newAveragesQuery.rows[0].newavgdb;
             const newAvgLoud = newAveragesQuery.rows[0].newavgloud;
@@ -281,7 +284,7 @@ app.post('/api/updateTile', async (req, res) => {
                 UPDATE noise_reports
                 SET avg_db = $1, avg_loudness = $2
                 WHERE id = $3
-            `, [newAvgdB, newAvgLoud, matchingTile.id]);
+                `, [newAvgdB, newAvgLoud, matchingTile.id]);
 
             res.json({ success: true, message: 'Data updated successfully' });
         } else {
@@ -316,7 +319,7 @@ function parseTags(tagsInput) {
             throw new Error('Tags are not in string or array format');
         }
     } catch (error) {
-        console.error(`Error parsing tags: ${error.message}`);
+        console.error(`Error parsing tags: ${error.message} `);
         // If there's an error, return the original input
         return tagsInput;
     }
