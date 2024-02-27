@@ -57,6 +57,15 @@ a {
 .with-image img {
   float: left;
 }
+.article-img {
+  max-width: 100%;
+  width: 500px;
+  margin-right: 50px;
+  margin-bottom: 30px;
+}
+.full-width {
+  min-width: 100%;
+}
 .app-image {
   max-width: 200px;
   border-radius: 30px;
@@ -336,7 +345,7 @@ footer {
 #about {
   padding: 30px 80px 80px 80px;
 }
-.ref a {
+.ref-arrow, #handbookNav a {
   text-decoration: none;
 }
 
@@ -730,6 +739,10 @@ input[type="radio"]:hover + label {
   padding: 0px 40px;
 }
 
+#handbookTxt h2 {
+  font-size: 30px;
+}
+
 #handbookNav {
   display: flex;
   flex-direction: column;
@@ -814,6 +827,9 @@ input[type="radio"]:hover + label {
 
 /*mobile*/
 @media only screen and (max-width: 500px) {
+  .fixedBG {
+    background-attachment: scroll;
+  }
   .mapTxt {
     padding: 0px !important;
   }

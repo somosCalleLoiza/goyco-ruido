@@ -532,6 +532,7 @@ async function addToTile() {
     if (!tileExists) {
         createTile(reportTile, reportData);
     }
+    updateNoiseReports()
 }
 
 //create tile if none exist at that point
