@@ -230,7 +230,7 @@ leaveForm.addEventListener("click", function(event){
     leavePopup.style.display = "none";
 
     mapForm.reset();
-
+    document.getElementById("selectedTags").innerHTML = "";
     testMarker.setLatLng([0, 0]);
     testTile.setLatLngs([[0, 0]]);
     locationMode = false;
@@ -489,6 +489,8 @@ async function mapSubmit(event) {
     testTile.setLatLngs([[0, 0]]);
 
     locationMode = false;
+
+    document.getElementById("selectedTags").innerHTML = "";
 
     info.style.display = "block";
     report.style.display = "none";
