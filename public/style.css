@@ -282,6 +282,9 @@ footer {
   background-color: var(--altLight);
   color: var(--mainDark);
 }
+.lang a, .lang a:hover {
+  all: unset;
+}
 
 
 /* HOME PAGE */

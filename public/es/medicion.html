@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sonómetros | Ruido en Calle Loíza</title>
+    <link rel="stylesheet" href="/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link type="image/png" sizes="32x32" rel="icon" href="./favicon.ico" />
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <header>
+        <div class="navbar">
+          <ul class="navlinks">
+            <li class="homebtn">
+              <a href="index.html" aria-label="Home"><i class="fa fa-home" aria-hidden="true"></i></span></a>
+            </li>
+            <li>
+              <div class="navdropdown">
+                <a href="ruido.html" class = "navbtn">Aprender ▾</a>
+                <div class="navdropdown-links">
+                  <a href="ruido.html">Ruido & Salud</a>
+                  <a href="recursos.html">Recursos de Reducción de Ruido</a>
+                </div>
+              </div>
+            </li>
+            <li class = "current">
+              <div class="navdropdown">
+                <a href="mapa.html" class = "navbtn">Mapeo ▾</a>
+                <div class="navdropdown-links">
+                  <a href="mapa.html">Mapa de Ruido</a>
+                  <a href="medicion.html">Herramientas Para Medición de Ruido</a>
+                </div>
+              </div>
+            </li>
+          </ul>
+          <div class="languageSelect">
+            <button class="langBtn">🌐 Español ▾</button>
+            <div class="langOptions">
+              <div class="lang">
+                <a href = "/monitors.html">🌐 English</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="navspace lightColor"></div>
+      </header>
+
+      <div class="default lightColor extra-padded heading custom-scroll">
+        <h1 class = "center accentColor">Herramientas para medir el ruido</h1>
+        <p>
+          La recopilación de datos de ruido se puede realizar en muchos dispositivos, incluidos
+          teléfonos inteligentes y sonómetros comerciales.
+        </p>
+        <p>
+          Salta a... 
+          <a href = "#teléfono">Aplicaciones de Teléfono</a> / 
+          <a href = "#medir">Medir el Nivel de Decibelios Con Teléfonos</a> / 
+          <a href = "#sonometros">Sonómetros</a>
+        </p>
+
+        <h2 id = "teléfono">Aplicaciones de Teléfono</h2>
+        <p>
+          A continuación se presentan recomendaciones de aplicaciones para medir los niveles de decibeles.
+        </p>
+            
+        <h3>NIOSH Sound Level Meter</h3>
+        <p class = "with-image">
+          <img src="/images/NIOSH_app.webp" class = "app-image" alt = "NIOSH icono de la aplicación"/>
+          NIOSH Sound Level Meter es una aplicación para iOS desarrollada por
+          Instituto Nacional para la Seguridad y Salud Ocupacional. La aplicación es
+          para descargar gratis y está diseñado para medir niveles de sonido en el
+          lugar de trabajo. La aplicación proporciona una lectura del nivel de sonido utilizando el
+          micrófono incorporado en el dispositivo.
+          <br>
+          <a href="https://www.cdc.gov/spanish/niosh/topics/ruidoApp.html" target="_blank">Aprende más</a>
+        </p>
+        
+        <h3>Decibel X Pro</h3>
+        <p class="with-image">
+          <img src="/images/DecibelXPro_app.webp" class = "app-image" alt = "Decibel X Pro icono de la aplicación"/>
+          Decibel X Pro es una aplicación para iOS y Android diseñada para
+          medir los niveles de sonido. La aplicación proporciona una lectura del sonido.
+          nivel usando el micrófono incorporado en el dispositivo. La aplicación cuesta
+          $50 para descargar, o hay una versión gratuita (Decibel X) con eso
+          permite mediciones únicas de 30 segundos.
+          <br>
+          <a href="https://skypaw.com/decibelx.html" target="_blank">Aprende más</a>
+        </p>
+  
+        <h3>SPLnFFT</h3>
+        <p class="with-image">
+          <img src="/images/SPLnFFT_app.webp" class = "app-image" alt = "SPLnFFT icono de la aplicación"/>
+          SPLnFFT es una aplicación de $4 disponible para dispositivos iOS. La aplicación incluye un analizador de frecuencia, un frecuencímetro, un generador de señales de prueba y un dosímetro. Está recomendado por el "Fondo de Seguridad y Salud de los Trabajadores de América del Norte".
+          <br>
+          <a href="https://apps.apple.com/us/app/splnfft-noise-meter/id355396114" target="_blank">Aprende más</a>
+        </p>
+
+   <h3>Sound Meter and Noise Detector</h3>
+        <p class="with-image">
+          <img src="/images/soundmeter.webp" class = "app-image" alt = "Sound Meter and Noise Detector icono de la aplicación"/>
+          Sound Meter and Noise Detector es una aplicación de $3 disponible para dispositivos Android. La aplicación informa el nivel de decibelios mínimo, promedio y máximo.
+          y gráfico en tiempo real.
+          <br>
+          <a href="https://play.google.com/store/apps/details?id=coocent.app.tools.soundmeter.noisedetector" target="_blank">Aprende más</a>
+        </p>
+
+        <p>A continuación se muestra una tabla resumen de aplicaciones de sonómetros:</p>
+        <div class = "tableContainer">
+          <table class = "full-width">
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Calificación</th>
+                <th>Compatibilidad</th>
+                <th>Registro</th>
+                <th>Precio</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Decibel X</td>
+                <td>4.6</td>
+                <td>iOS</td>
+                <td>Sí</td>
+                <td>$45 por año</td>
+              </tr>
+              <tr>
+                <td>Decibel X Pro</td>
+                <td>4.7</td>
+                <td>iOS y Android</td>
+                <td>Sí</td>
+                <td>$39.99</td>
+              </tr>
+              <tr>
+                <td>NIOSH Sound Level Meter</td>
+                <td>4.7</td>
+                <td>iOS</td>
+                <td>Sí</td>
+                <td>Gratis</td>
+              </tr>
+              <tr>
+                <td>Decibel Meter Sound Detector</td>
+                <td>4.6</td>
+                <td>iOS</td>
+                <td>Sí</td>
+                <td>$10.99 por año</td>
+              </tr>
+              <tr>
+                <td>SoundPrint</td>
+                <td>4.6</td>
+                <td>iOS</td>
+                <td>No</td>
+                <td>Gratis</td>
+              </tr>
+              <tr>
+                <td>SPLnFFT</td>
+                <td>4.9</td>
+                <td>iOS</td>
+                <td>Sí</td>
+                <td>$3.99</td>
+              </tr>
+              <tr>
+                <td>Sound Meter and Noise Detector</td>
+                <td>4.2</td>
+                <td>Android</td>
+                <td>Sí</td>
+                <td>$2.99</td>
+              </tr>
+              <tr>
+                <td>Decibel Pro</td>
+                <td>4.6</td>
+                <td>iOS y Android</td>
+                <td>Sí</td>
+                <td>$24.99</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 id = "medir" class = "top-space">Medir el Nivel de Decibelios Con Teléfonos</h2>
+        <p>Al medir con teléfonos inteligentes, es importante sostener el dispositivo y registrar correctamente para obtener datos más precisos.</p>
+        <ul>
+          <li>Sostenga el teléfono inteligente a aproximadamente 10 - 12" (~25-30 cm) de su "zona de audición" (la esfera alrededor de su cabeza)</li>
+          <li>El micrófono debe apuntar directamente a la fuente de ruido, preferiblemente en un ángulo de 30° - 45°</li>
+          <li>Si la fuente de ruido es constante, sólo necesitará una medición de 30 segundos a 1 minuto</li>
+          <li>Si la fuente de ruido varía, se desean períodos de medición más prolongados para intentar capturar todas las variaciones. Se sugiere al menos 15 minutos de medición</li>
+          <li>Tome precauciones para no tocar el micrófono, golpearlo ni frotarlo con los dedos, ya que esto puede introducir artefactos en la medición</li>
+          <li>No lo use en condiciones de mucho viento, use un protector contra el viento si está usando un micrófono externo (algunos vienen equipados con protectores contra el viento)</li>
+          <li>Evite medir a menos de 1 metro de superficies grandes que emitan ruido o reflejen</li>
+          <li>Si es posible, calibre la aplicación utilizando un sonómetro comercial como referencia</li>
+        </ul>
+
+        <h2 id = "sonometros" class = "top-space">Sonómetros</h2>
+        <div class = "with-image">
+          <img src = "/images/reed-r8080-kit-data-logging-sound-level-meter-and-calibrator.jpeg" class = "article-img shadow" alt = "equipo de REED r8080 sonómetro y calibrador con registro de datos">
+          <p>
+            Se recomiendan sonómetros comerciales para mayor precisión.
+            El uso de sonómetros tipo 1 o tipo 2 es lo mejor para mediciones profesionales.
+            Para obtener más información sobre los sonómetros profesionales, consulte estas páginas: 
+          </p>
+          <p>
+            Como Elegir el Mejor Sonometro
+            <br>
+            <a href="https://svantek.com/es/academia/como-elegir-el-mejor-sonometro/">svantek.com/es/academia/como-elegir-el-mejor-sonometro</a>
+          </p> 
+          <p>
+            What is a Sound Level Meter?
+            <br>
+            <a href = "https://www.hbkworld.com/en/knowledge/resource-center/articles/sound/what-is-a-sound-level-meter">hbkworld.com/en/knowledge/resource-center/articles/sound/what-is-a-sound-level-meter</a>
+          </p>
+          
+        </div>
+          
+
+        <p>A continuación se muestra una tabla resumen de sonómetros de costo relativamente bajo.</p>
+        <div class = "tableContainer">
+          <table class = "full-width">
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Tipo</th>
+                <th>Precisión Según Fabricante</th>
+                <th>Certificación</th>
+                <th>Registro</th>
+                <th>Precio</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>REED Instruments R8050</td>
+                <td>Tipo 2</td>
+                <td>± 1.4 dB</td>
+                <td>Certificado de calibración a través de distribuidores autorizados REED</td>
+                <td>No</td>
+                <td>~$160-$200</td>
+              </tr>
+              <tr>
+                <td>REED Instruments R8080</td>
+                <td>Tipo 2</td>
+                <td>± 1.4 dB</td>
+                <td>Certificado de calibración a través de distribuidores autorizados REED</td>
+                <td>Sí</td>
+                <td>~$300-$360</td>
+              </tr>
+              <tr>
+                <td>Extech 407730</td>
+                <td>N/A</td>
+                <td>± 2 dB</td>
+                <td>Certificado NIST disponible</td>
+                <td>No</td>
+                <td>~$85-$100</td>
+              </tr>
+              <tr>
+                <td>Extech 407732</td>
+                <td>Tipo 2</td>
+                <td>± 1.5 dB</td>
+                <td>Certificado NIST disponible</td>
+                <td>No</td>
+                <td>$215</td>
+              </tr>
+              <tr>
+                <td>BAFX Advanced Sound Meter</td>
+                <td>N/A</td>
+                <td>± 1.5 dB</td>
+                <td>N/A</td>
+                <td>Sí</td>
+                <td>~$55</td>
+              </tr>
+              <tr>
+                <td>Tadeto Digital Sound Level Meter</td>
+                <td>N/A</td>
+                <td>± 2 dB</td>
+                <td>N/A</td>
+                <td>No</td>
+                <td>$30</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+      <div class="wrapperSpace"></div>
+      <footer>
+        <p>© 2024 SomosCalleLoíza</p>
+      </footer>
+    </div>
+    <script defer src="/script.js"></script>
+  </body>
+</html>
