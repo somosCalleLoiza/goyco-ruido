@@ -63,8 +63,7 @@
           <span>0 dB<span>
           <span class = "floatright">140 dB</span>
           <div class = "colorcode"></div>
-          <br>
-          <div class = "center">
+          <div class = "center top-space">
             <button class = "reportBtn" id = "reportBtn">Add to Map</button>
             <button id="downloadButton">Download CSV of All Data</button>
           </div>
@@ -95,45 +94,64 @@
             <h3>Decibel Level</h3>
             <p class = "lightShadow formNote">Decibel data is optional but highly encouraged. For more information on how to measure this, go <a href = "monitors.html" target="_blank">here<span class="material-symbols-outlined smalltext">open_in_new</span></a></p>
             <p>Measure the decibel level for at least 30 seconds and input the average and maximum measurement.</p>
-            <label for="avg">Average dB: </label>
-            <input id = "avg" type = "number" min = 25 max = 140 placeholder=60></input><br><br>
-            <label for="max">Max dB: </label>
-            <input id = "max" type = "number" min = 25 max = 140 placeholder=70></input><br><br>
-            <label for="device">Device used for measurement: </label>
-            <select id="device" name="device">
-              <option value="" selected>Select device</option>
-              <option value="iPhone App">iPhone App</option>
-              <option value="Android App">Android App</option>
-              <option value="Apple Watch">Apple Watch</option>
-              <option value="Type 1 Sound Level Meter">Type 1 Sound Level Meter</option>
-              <option value="Type 2 Sound Level Meter">Type 2 Sound Level Meter</option>
-              <option value="Type 1 Sound Level Meter (certified)">Type 1 Sound Level Meter (certified)</option>
-              <option value="Type 2 Sound Level Meter (certified)">Type 2 Sound Level Meter (certified)</option>
-              <option value="Other Sound Level Meter">Other Sound Level Meter</option>
-            </select>
-            <br>
-            <br>
-            <h3>Location</h3>
+
+            <div class = "formQ">
+              <label for="avg">Average dB: </label>
+              <input id = "avg" type = "number" min = 25 max = 140 placeholder=60></input>
+            </div>
+
+            <div class = "formQ">
+              <label for="max">Max dB: </label>
+              <input id = "max" type = "number" min = 25 max = 140 placeholder=70></input>
+            </div>
+
+            <div class = "formQ">
+              <label for="device">Device used for measurement: </label>
+              <select id="device" name="device">
+                <option value="" selected>Select device</option>
+                <option value="iPhone App">iPhone App</option>
+                <option value="Android App">Android App</option>
+                <option value="Apple Watch">Apple Watch</option>
+                <option value="Type 1 Sound Level Meter">Type 1 Sound Level Meter</option>
+                <option value="Type 2 Sound Level Meter">Type 2 Sound Level Meter</option>
+                <option value="Type 1 Sound Level Meter (certified)">Type 1 Sound Level Meter (certified)</option>
+                <option value="Type 2 Sound Level Meter (certified)">Type 2 Sound Level Meter (certified)</option>
+                <option value="Other Sound Level Meter">Other Sound Level Meter</option>
+              </select>
+            </div>
+
+            <h3 class = "top-space">Location</h3>
             <p class="lightShadow formNote">The exact location of a report is not saved, just the square it is a part of</p>
-            <p>Enter a location by clicking on the map, entering coordinates, or using your current location.</p>              
-            <label for="lat">Latitude: </label>
-            <input id = "lat" placeholder=18.45172 required onfocusout = "handleLoc()"></input><br><br>
-            <label for="long">Longitude: </label>
-            <input id = "long" placeholder=-66.06245 required onfocusout = "handleLoc()"></input><br><br>
+            <p>Enter a location by clicking on the map, entering coordinates, or using your current location.</p>  
+            
+            <div class = "formQ">
+              <label for="lat">Latitude: </label>
+              <input id = "lat" placeholder=18.45172 required onfocusout = "handleLoc()"></input>
+            </div>
+
+            <div class = "formQ">
+              <label for="long">Longitude: </label>
+              <input id = "long" placeholder=-66.06245 required onfocusout = "handleLoc()"></input>
+            </div>
+
             <div class = "btnGroup" id = "locBtns">
               <button type="button" id = "curLoc">Use Current Location</button>
             </div>
-            <br>
-            <h3>Date & Time</h3>
-            <label for = "date">Date: </label>
-            <input type="date" id="date" name="date" required/>
-            <br>
-            <br>
-            <label for = "time">Time: </label>
-            <input type="time" id="time" name="time" required/>
-            <br>
-            <br>
-            <h3>Subjective Data</h3>
+            
+            <h3 class = "top-space">Date & Time</h3>
+
+            <div class = "formQ">
+              <label for = "date">Date: </label>
+              <input type="date" id="date" name="date" required/>
+            </div>
+
+            <div class = "formQ">
+              <label for = "time">Time: </label>
+              <input type="time" id="time" name="time" required/>
+            </div>
+            
+            <h3 class = "top-space">Subjective Data</h3>
+
             <label for="loudness">On a scale from 0 to 5, how loud is it?</label>
             <select id="loudness" name="loudness" required>
               <option value="" selected>...</option>
@@ -144,26 +162,25 @@
               <option value = "4">4 - Loud noise (Ex: concert)</option>
               <option value = "5">5 - Unbearable noise (Ex: jackhammer)</option>
             </select>
-            <br>
+
             <p>How do you feel about the noise?</p>
             <div class = "feeling-container">
               <input type="radio" id="happiest" name="feeling" value="0">
               <label for = "happiest">😀</label>
-              <br>
+              
               <input type="radio" id="happy" name="feeling" value="1">
               <label for = "happy">🙂</label>
-              <br>
+              
               <input type="radio" id="neutral" name="feeling" value="2">
               <label for = "neutral">😐</label>
-              <br>
+              
               <input type="radio" id="unpleasant" name="feeling" value="3">
               <label for = "unpleasant">🙁</label>
-              <br>
+              
               <input type="radio" id="sad" name="feeling" value="4">
               <label for = "sad">😢</label>
-              <br>
+              
             </div>
-            <br>
 
             <h3>Tags</h3>
             <p>Use tags to describe noise sources and measurement conditions (car, indoor, windy, etc.).</p>
@@ -171,8 +188,7 @@
               <input type="text" placeholder="Search tags..." id="tagSearch" onkeyup="filterTags()">
               <div id="tagDropdown" class="dropdown"></div>
             </div>
-            <br>
-            <div id = "selectedTags"></div>
+            <div id = "selectedTags" class = "top-space"></div>
             <p class = "lightShadow formNote">All tags: Car, Motorcycle, Traffic, Construction, Wildlife, Music, Restaurant, Bar, Rain, Aircraft, Indoor, Outdoor, Wind</p>
 
             <button type = "submit">Submit</button>
@@ -190,11 +206,17 @@
             All data collected in this form is anonymous but the information will be publicly available on this website. 
             Exact locations are not saved for privacy. The report will be grouped with others from the same square.
           </p>
-          <input type="checkbox" id="understand" name="understand" value="understand" required>
-          <label for="understand"> I understand the above and consent to uploading my data</label><br>
-          <input type="checkbox" id="above13" name="above13" value="above13" required>
-          <label for="above13"> I am 13 years or older</label><br><br>
-          <button type = "submit">Submit Report</button>
+
+          <div class = "block">
+            <input type="checkbox" id="understand" name="understand" value="understand" required>
+            <label for="understand"> I understand the above and consent to uploading my data</label>
+          </div>
+          <div class = "block">
+            <input type="checkbox" id="above13" name="above13" value="above13" required>
+            <label for="above13"> I am 13 years or older</label>
+          </div>
+
+          <button type = "submit" class = "top-space">Submit Report</button>
           <button type="button" id = "popCancel">Cancel</button>
         </form>
       </div>

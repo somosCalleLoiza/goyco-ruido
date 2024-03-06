@@ -2,6 +2,7 @@
 /* ==========================================================================
 General map setup
 ========================================================================== */
+
 //size of grid tiles
 let gridSize = .00072;
 
@@ -54,7 +55,7 @@ let goycoCoords = [
 ]
 const goyco = L.polygon(goycoCoords, { color: '#424242', fill: false }).addTo(map);
 
-
+//get color based on decibel level
 function getColorDB(dB) {
     let color = ""
     if (dB == null) { color = "#6b7e9c"; }
@@ -102,9 +103,8 @@ L.control.recenter = function (opts) {
 L.control.recenter({ position: 'topright' }).addTo(map);
 
 /* ==========================================================================
-GeoJSON Stuff
+GeoJSON Functions
 Worth noting GeoJSON goes [long, lat] unlike Leaflet's [lat, long]
-geojson var from geojson.js for organization purposes
 ========================================================================== */
 
 let geoData;
@@ -126,7 +126,7 @@ fetch('/api/getTiles')
         console.error('Error fetching GeoJSON data:', error);
     });
 
-
+//style for squares on map
 function styleGeo(feature) {
     let thisStyle = {
         color: "white",
@@ -142,7 +142,7 @@ function styleGeo(feature) {
     return thisStyle;
 }
 
-
+//functions for squares on map - change appearance on hover, show data on click
 function onEachFeature(feature, layer) {
 
     //white outline with hover
@@ -184,14 +184,16 @@ Input for adding data to the map
 //local vars for responses
 let reportTile;
 
+//test square that shows when a location is chosen
 let testTile = L.polygon([[0, 0]], { color: '#424242' , alt: "Location Area"}).addTo(map);
 let testMarker = L.marker([0, 0], {alt: "Location"}).addTo(map);
 
+//template for report data
 let reportData =
 {
     "decibel": {
-        "avg": 60,
-        "max": 70,
+        "avg": null,
+        "max": null,
         "device": ""
     },
     "date": "",
@@ -201,6 +203,7 @@ let reportData =
     "tags": []
 }
 
+//array for translating num value for feelings into an expression
 const emojis = ['😀', '🙂', '😐', '🙁', '😢'];
 
 const backData = document.getElementById("backData");
@@ -211,7 +214,6 @@ const data = document.getElementById("mapData");
 const dataBlocks = document.getElementById("dataBlocks");
 const tName = document.getElementById("tileName");
 const reportbtn = document.getElementById("reportBtn");
-
 const leavePopup = document.getElementById("leavePopup");
 
 //hide/show main and report pages
@@ -229,6 +231,7 @@ leaveForm.addEventListener("click", function(event){
     report.style.display = "none";
     leavePopup.style.display = "none";
 
+    //reset form
     mapForm.reset();
     document.getElementById("selectedTags").innerHTML = "";
     testMarker.setLatLng([0, 0]);
@@ -248,7 +251,7 @@ reportbtn.addEventListener("click", function(event){
 });
 
 
-//Location
+//get current location
 const curLoc = document.getElementById("curLoc");
 curLoc.addEventListener("click", function(event){
     event.preventDefault();
@@ -271,7 +274,10 @@ function handleLoc(lat, long) {
 
     let valid = true;
 
+    //lat will == null if handleLoc was called after entering coordinates manually
     if (lat == null) {
+
+        //0.000005 offset used to prevent issues with coords on edge of square
         lat = parseFloat(document.getElementById("lat").value) - 0.000005;
         long = parseFloat(document.getElementById("long").value) + 0.000005;
 
@@ -282,10 +288,8 @@ function handleLoc(lat, long) {
 
     if (valid) {
         let tile = calcLocation(lat, long);
-        //displayLocCoords(tile[0], tile[1]);
 
         //show tile on map for confirmation
-
         let testlatlngs = [
             [tile[0], tile[1]],
             [tile[0], tile[1] + gridSize],
@@ -303,7 +307,7 @@ function handleLoc(lat, long) {
     }
 }
 
-//check if point coordinates are within Goyco - ray casting
+//check if point coordinates are within monitoring area - ray casting
 function checkBounds(x, y) {
     let polygon = goycoCoords;
     polygon.push(polygon[0]);
@@ -325,11 +329,11 @@ function checkBounds(x, y) {
     }
     return inside;
 }
-//show error for coords outside of goyco
+//show error for coords outside of monitoring area
 function invalidLoc() {
     alert("Coordinates outside of monitoring area boundaries");
 }
-//calculate tile coordinates given point
+//calculate square coordinates with given point
 function calcLocation(lat, long) {
     let startPt = bounds[0];
 
@@ -349,6 +353,7 @@ function calcLocation(lat, long) {
 
     return (reportTile);
 }
+//change lat and long inputs to lat and long parameters
 function displayLocCoords(lat, long) {
     const locLat = document.getElementById("lat");
     locLat.value = lat;
@@ -356,9 +361,11 @@ function displayLocCoords(lat, long) {
     locLong.value = long;
 }
 
-//tag stuff
+//Tag variables and functions
 
+//list of all tags
 let tagList = ["Car", "Motorcycle", "Traffic", "Construction", "Wildlife", "Music", "Restaurant", "Bar", "Rain", "Aircraft", "Indoor", "Outdoor", "Wind"];
+
 let userTags = [];
 let canHide = true;
 createTags();
@@ -367,6 +374,7 @@ document.getElementById("tagSearch").oninput = function (e) {
     e.preventDefault();
 };
 
+//dynamically create tags using list
 function createTags() {
     for (let i = 0; i < tagList.length; i++) {
         createTag(tagList[i]);
@@ -386,6 +394,8 @@ function createTag(tag) {
     tagDrop.appendChild(tagBtn);
 }
 
+//tag selected from dropdown, add to selected tags
+//"tag" for name of tag, "remove" for dropdown element removed when tag is added
 function addTag(tag, remove) {
     userTags.push(tag);
 
@@ -414,6 +424,7 @@ function addTag(tag, remove) {
     remove.parentNode.removeChild(remove);
 }
 
+//showing/hiding tag dropdown
 document.getElementById("tagDropdown").addEventListener("mousedown", function(event){
     event.preventDefault();
     canHide = false;
@@ -427,6 +438,7 @@ document.getElementById("tagSearch").addEventListener("focusout", function(event
     
 });
 
+//tag search/filter
 function filterTags() {
     let input = document.getElementById("tagSearch");
     let filter = input.value.toUpperCase();
@@ -446,7 +458,7 @@ function filterTags() {
 }
 
 
-//Submit form
+//Submit form - first show confirm form, submitting that form calls mapSubmit
 const mapForm = document.getElementById("mapForm");
 mapForm.addEventListener("submit", confirmSubmit);
 function confirmSubmit(event) {
@@ -461,6 +473,7 @@ document.getElementById("popCancel").addEventListener("click", function(event){
     confirmForm.reset();
 });
 
+//submit data
 async function mapSubmit(event) {
     event.preventDefault();
     document.getElementById("submitPopup").style.display = "none";
@@ -629,7 +642,7 @@ async function updateNoiseReports() {
     }
 }
 
-//showData
+//show data when square is clicked
 async function showData(properties, coords) {
 
     let tileData;
