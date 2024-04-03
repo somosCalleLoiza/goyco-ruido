@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-  
+
   <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Map | Noise on Calle Loíza</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/style.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
      crossorigin=""/>
@@ -15,7 +15,7 @@
   </head>
 
   <body onload="updateNoiseReports()">
-    <div class = "wrapper">
+    <div class="wrapper">
     <header>
       <div class="navbar">
         <ul class="navlinks">
@@ -24,16 +24,16 @@
           </li>
           <li>
             <div class="navdropdown">
-              <a href="about.html" class = "navbtn">Learn ▾</a>
+              <a href="about.html" class="navbtn">Learn ▾</a>
               <div class="navdropdown-links">
                 <a href="about.html">Noise & Health</a>
                 <a href="handbook.html">Noise Reduction Resources</a>
               </div>
             </div>
           </li>
-          <li class = "current">
+          <li class="current">
             <div class="navdropdown">
-              <a href="map.html" class = "navbtn">Mapping ▾</a>
+              <a href="map.html" class="navbtn">Mapping ▾</a>
               <div class="navdropdown-links">
                 <a href="map.html">Noise Map</a>
                 <a href="monitors.html">Tools for Measuring Noise</a>
@@ -43,71 +43,71 @@
         </ul>
         <div class="languageSelect">
           <button class="langBtn">🌐 English ▾</button>
-          <div class = "langOptions">
+          <div class="langOptions">
             <div class="lang">
-              <a href = "es/mapa.html">🌐 Español</a>
+              <a href="/mapa.html">🌐 Español</a>
             </div>
           </div>
         </div>
       </div>
-      <div class = "navspace lightColor"></div>
+      <div class="navspace lightColor"></div>
     </header>
 
-    <div class = "mapGrid lightColor default custom-scroll">
+    <div class="mapGrid lightColor default custom-scroll">
       <div id="map"></div>
-      <div id = "mapInfo" class = "mapTxt">
-        <div class = "txtHeader">
-          <h2 class = "accentColor center">Noise Map</h2>
+      <div id="mapInfo" class="mapTxt">
+        <div class="txtHeader">
+          <h2 class="accentColor center">Noise Map</h2>
         </div>
-        <div class = "txtMain">
+        <div class="txtMain">
           <h3>Total reports: <span id="numReports"></span></h3>
           <p>Click on a square on the map to see data from that area. Read reports for more information on the decibel levels and types of noise.</p>
           <span>0 dB<span>
-          <span class = "floatright">140 dB</span>
-          <div class = "colorcode"></div>
-          <div class = "center top-space">
-            <button class = "reportBtn" id = "reportBtn">Add to Map</button>
+          <span class="floatright">140 dB</span>
+          <div class="colorcode"></div>
+          <div class="center top-space">
+            <button class="reportBtn" id="reportBtn">Add to Map</button>
             <button id="downloadButton">Download CSV of All Data</button>
           </div>
-          <p>If you would like to report or fix problems with the map (ex: incorrect road or missing address), visit 
+          <p>If you would like to report or fix problems with the map (ex: incorrect road or missing address), visit
             <a href="https://www.openstreetmap.org/fixthemap" target="_blank">openstreetmap.org/fixthemap<span class="material-symbols-outlined smalltext">open_in_new</span></a>
           </p>
         </div>
       </div>
 
-      <div id = "mapData" class = "mapTxt">
-        <div class = "txtHeader">
-          <button class = "back" id = "backData">X</button>
-          <h2 id = "tileName">Square Position</h2>
+      <div id="mapData" class="mapTxt">
+        <div class="txtHeader">
+          <button class="back" id="backData">X</button>
+          <h2 id="tileName">Square Position</h2>
         </div>
-        <div class = "txtMain">
-          <div id = "tileLabeled"></div>
-          <div id = "dataBlocks"></div>
+        <div class="txtMain">
+          <div id="tileLabeled"></div>
+          <div id="dataBlocks"></div>
         </div>
       </div>
 
-      <div id = "mapReport" class = "mapTxt">
-        <div class = "txHeader">
-          <button class = "back" id = "backReport">X</button>
+      <div id="mapReport" class="mapTxt">
+        <div class="txHeader">
+          <button class="back" id="backReport">X</button>
           <h2>Your Data</h2>
         </div>
-        <div class = "txtMain" id = "reportForm">
-          <form id = mapForm>
+        <div class="txtMain" id="reportForm">
+          <form id=mapForm>
             <h3>Decibel Level</h3>
-            <p class = "lightShadow formNote">Decibel data is optional but highly encouraged. For more information on how to measure this, go <a href = "monitors.html" target="_blank">here<span class="material-symbols-outlined smalltext">open_in_new</span></a></p>
+            <p class="lightShadow formNote">Decibel data is optional but highly encouraged. For more information on how to measure this, go <a href="monitors.html" target="_blank">here<span class="material-symbols-outlined smalltext">open_in_new</span></a></p>
             <p>Measure the decibel level for at least 30 seconds and input the average and maximum measurement.</p>
 
-            <div class = "formQ">
+            <div class="formQ">
               <label for="avg">Average dB: </label>
-              <input id = "avg" type = "number" min = 25 max = 140 placeholder=60></input>
+              <input id="avg" type="number" min=25 max=140 placeholder=60></input>
             </div>
 
-            <div class = "formQ">
+            <div class="formQ">
               <label for="max">Max dB: </label>
-              <input id = "max" type = "number" min = 25 max = 140 placeholder=70></input>
+              <input id="max" type="number" min=25 max=140 placeholder=70></input>
             </div>
 
-            <div class = "formQ">
+            <div class="formQ">
               <label for="device">Device used for measurement: </label>
               <select id="device" name="device">
                 <option value="" selected>Select device</option>
@@ -122,128 +122,128 @@
               </select>
             </div>
 
-            <h3 class = "top-space">Location</h3>
+            <h3 class="top-space">Location</h3>
             <p class="lightShadow formNote">The exact location of a report is not saved, just the square it is a part of</p>
-            <p>Enter a location by clicking on the map, entering coordinates, or using your current location.</p>  
-            
-            <div class = "formQ">
+            <p>Enter a location by clicking on the map, entering coordinates, or using your current location.</p>
+
+            <div class="formQ">
               <label for="lat">Latitude: </label>
-              <input id = "lat" placeholder=18.45172 required onfocusout = "handleLoc()"></input>
+              <input id="lat" placeholder=18.45172 required onfocusout="handleLoc()"></input>
             </div>
 
-            <div class = "formQ">
+            <div class="formQ">
               <label for="long">Longitude: </label>
-              <input id = "long" placeholder=-66.06245 required onfocusout = "handleLoc()"></input>
+              <input id="long" placeholder=-66.06245 required onfocusout="handleLoc()"></input>
             </div>
 
-            <div class = "btnGroup" id = "locBtns">
-              <button type="button" id = "curLoc">Use Current Location</button>
+            <div class="btnGroup" id="locBtns">
+              <button type="button" id="curLoc">Use Current Location</button>
             </div>
-            
-            <h3 class = "top-space">Date & Time</h3>
 
-            <div class = "formQ">
-              <label for = "date">Date: </label>
+            <h3 class="top-space">Date & Time</h3>
+
+            <div class="formQ">
+              <label for="date">Date: </label>
               <input type="date" id="date" name="date" required/>
             </div>
 
-            <div class = "formQ">
-              <label for = "time">Time: </label>
+            <div class="formQ">
+              <label for="time">Time: </label>
               <input type="time" id="time" name="time" required/>
             </div>
-            
-            <h3 class = "top-space">Subjective Data</h3>
+
+            <h3 class="top-space">Subjective Data</h3>
 
             <label for="loudness">On a scale from 0 to 5, how loud is it?</label>
             <select id="loudness" name="loudness" required>
               <option value="" selected>...</option>
-              <option value = "0">0 - Silence</option>
-              <option value = "1">1 - Light noise (Ex: library)</option>
-              <option value = "2">2 - Everyday noise (Ex: conversation)</option>
-              <option value = "3">3 - Moderate noise (Ex: busy hotel lobby)</option>
-              <option value = "4">4 - Loud noise (Ex: concert)</option>
-              <option value = "5">5 - Unbearable noise (Ex: jackhammer)</option>
+              <option value="0">0 - Silence</option>
+              <option value="1">1 - Light noise (Ex: library)</option>
+              <option value="2">2 - Everyday noise (Ex: conversation)</option>
+              <option value="3">3 - Moderate noise (Ex: busy hotel lobby)</option>
+              <option value="4">4 - Loud noise (Ex: concert)</option>
+              <option value="5">5 - Unbearable noise (Ex: jackhammer)</option>
             </select>
 
             <p>How do you feel about the noise?</p>
-            <div class = "feeling-container">
+            <div class="feeling-container">
               <input type="radio" id="happiest" name="feeling" value="0">
-              <label for = "happiest">😀</label>
-              
+              <label for="happiest">😀</label>
+
               <input type="radio" id="happy" name="feeling" value="1">
-              <label for = "happy">🙂</label>
-              
+              <label for="happy">🙂</label>
+
               <input type="radio" id="neutral" name="feeling" value="2">
-              <label for = "neutral">😐</label>
-              
+              <label for="neutral">😐</label>
+
               <input type="radio" id="unpleasant" name="feeling" value="3">
-              <label for = "unpleasant">🙁</label>
-              
+              <label for="unpleasant">🙁</label>
+
               <input type="radio" id="sad" name="feeling" value="4">
-              <label for = "sad">😢</label>
-              
+              <label for="sad">😢</label>
+
             </div>
 
             <h3>Tags</h3>
             <p>Use tags to describe noise sources and measurement conditions (car, indoor, windy, etc.).</p>
-            <div class="tagContainer" id = "tagContainer">
+            <div class="tagContainer" id="tagContainer">
               <input type="text" placeholder="Search tags..." id="tagSearch" onkeyup="filterTags()">
               <div id="tagDropdown" class="dropdown"></div>
             </div>
-            <div id = "selectedTags" class = "top-space"></div>
-            <p class = "lightShadow formNote">All tags: Car, Motorcycle, Traffic, Construction, Wildlife, Music, Restaurant, Bar, Rain, Aircraft, Indoor, Outdoor, Wind</p>
+            <div id="selectedTags" class="top-space"></div>
+            <p class="lightShadow formNote">All tags: Car, Motorcycle, Traffic, Construction, Wildlife, Music, Restaurant, Bar, Rain, Aircraft, Indoor, Outdoor, Wind</p>
 
-            <button type = "submit">Submit</button>
+            <button type="submit">Submit</button>
           </form>
 
         </div>
       </div>
     </div>
 
-    <div class = "popupContainer default" id = "submitPopup">
-      <div class = "popup">
-        <form id = "confirmForm">
+    <div class="popupContainer default" id="submitPopup">
+      <div class="popup">
+        <form id="confirmForm">
           <h3>Submit Report</h3>
-          <p> 
-            All data collected in this form is anonymous but the information will be publicly available on this website. 
+          <p>
+            All data collected in this form is anonymous but the information will be publicly available on this website.
             Exact locations are not saved for privacy. The report will be grouped with others from the same square.
           </p>
 
-          <div class = "block">
+          <div class="block">
             <input type="checkbox" id="understand" name="understand" value="understand" required>
             <label for="understand"> I understand the above and consent to uploading my data</label>
           </div>
-          <div class = "block">
+          <div class="block">
             <input type="checkbox" id="above13" name="above13" value="above13" required>
             <label for="above13"> I am 13 years or older</label>
           </div>
 
-          <button type = "submit" class = "top-space">Submit Report</button>
-          <button type="button" id = "popCancel">Cancel</button>
+          <button type="submit" class="top-space">Submit Report</button>
+          <button type="button" id="popCancel">Cancel</button>
         </form>
       </div>
     </div>
 
-    <div class = "popupContainer default" id = "leavePopup">
-      <div class = "popup">
+    <div class="popupContainer default" id="leavePopup">
+      <div class="popup">
         <h3>Are you sure you want to go back?</h3>
         <p>Your response will be reset if you leave this form.</p>
-        <button id = "leaveForm" >Leave Form</button>
-        <button id = "stayForm">Cancel</button>
+        <button id="leaveForm" >Leave Form</button>
+        <button id="stayForm">Cancel</button>
       </div>
     </div>
 
-    <div class = "wrapperSpace"></div>
+    <div class="wrapperSpace"></div>
     <footer>
     <p>© 2024 SomosCalleLoíza</p>
     </footer>
     </div>
 
-    
+
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
      crossorigin=""></script>
-    <script defer src="script.js"></script>
-   
+    <script defer src="/script.js"></script>
+
   </body>
 </html>
